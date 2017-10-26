@@ -1,0 +1,112 @@
+\ProvidesPackage{tongjiutils}[2009/05/13 1.0 put any packages you
+would like to use here]
+
+% 处理数学公式中的黑斜体的宏包
+%\RequirePackage{bm}
+
+
+% 不同于~|\mathcal| or |\mathfrak| 之类的英文花体字体
+%\RequirePackage{mathrsfs}
+
+% 表格中支持跨行
+\RequirePackage{multirow}
+\RequirePackage{bigstrut}
+
+% 跨页表格
+%\RequirePackage{longtable}
+
+% 固定宽度的表格
+%\RequirePackage{tabularx}
+
+% 表格中的反斜线
+%\RequirePackage{slashbox} 
+
+% 确定浮动对象的位置，可以使用~H，强制将浮动对象放到这里（可能效果很差）
+\RequirePackage{float}
+
+% 调整目录特殊要求，重定义缩进量
+\usepackage{titletoc} 
+\titlecontents{chapter}[0pt]{\addvspace{0pt}}%
+          {\xiaosi\song\thecontentslabel\enspace}%
+              {\xiaosi\song}{\dotfill\contentspage}[\addvspace{0pt}]
+\titlecontents{section}[1em]{\addvspace{0pt}}%
+          {\xiaosi\song \thecontentslabel\enspace}%
+              {\xiaosi\song}{\dotfill\contentspage}[\addvspace{0pt}]
+\titlecontents{subsection}[2em]{\addvspace{0pt}}%
+          {\xiaosi\song\thecontentslabel\enspace}%
+              {\xiaosi\song}{\dotfill\contentspage}[\addvspace{0pt}]
+
+% 浮动图形控制宏包。
+% 允许上一个~section 的浮动图形出现在下一个~section 的开始部分
+% 该宏包提供处理浮动对象的~|\FloatBarrier| 命令，使所有未处
+% 理的浮动图形立即被处理。这三个宏包仅供参考，未必使用：
+ % \RequirePackage[below]{placeins}
+ % \RequirePackage{floatflt} % 图文混排用宏包
+ % \RequirePackage{rotating} % 图形和表格的控制旋转
+
+% 给自定义的宏后面自动加空白
+\RequirePackage{xspace}
+
+
+% 定义自己常用的东西
+\newcommand{\china}{中华人民共和国}
+
+\RequirePackage{anyfontsize}
+
+% 表格需要尾注时可以用这个
+%\RequirePackage{threeparttable}
+
+\RequirePackage{siunitx}
+
+\RequirePackage{booktabs}
+
+\RequirePackage{multirow}
+
+\RequirePackage{multicol}
+
+\RequirePackage{amstext}
+
+\RequirePackage{graphicx}
+
+%\RequirePackage{tabu}
+
+% 化学符号环境
+%\RequirePackage[version=3]{mhchem}
+
+% 算法环境
+%\RequirePackage{algorithm,algorithmicx,algpseudocode}
+%\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+%\renewcommand{\algorithmicensure}{\textbf{Output:}}
+%\floatname{algorithm}{算法}
+
+% 要用Tikz画图的话，考虑反注释下面这段
+%\RequirePackage{tikz}
+%\usetikzlibrary[shapes.geometric,arrows]
+%\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+%\tikzstyle{arrow} = [thick,->,>=stealth]
+%\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+
+% 方便写公式的一些宏
+%\newcommand{\abs}[1]{\left\lvert#1\right\rvert}   % 定义绝对值符号
+%\newcommand{\norm}[1]{\left\lVert#1\right\rVert}  % 定义取模符号
+%\newcommand{\dif}{\mathrm{d}}
+
+%\newcommand{\Scalar}[1]{#1}% Scalar is the normal math typeset, italic
+%\newcommand{\Vector}[1]{\boldsymbol{#1}}% General vectors in bold italic
+%\renewcommand{\vec}[1]{\Vector{#1}}% redefine predefined vector if needed
+%\newcommand{\unitVector}[1]{\boldsymbol{\mathbf{#1}}}% Unit vectors in bold roman
+%\newcommand{\Tensor}[1]{\boldsymbol{\mathsf{#1}}}% Tensor in sans-serif bold italic
+%\newcommand{\unitTensor}[1]{\boldsymbol{{\mathsf{#1}}}}% Identity tensor in sans-serif bold
+%\newcommand{\Matrix}[1]{\boldsymbol{\mathbf{#1}}}% Matrix in bold roman
+%\newcommand{\unitMatrix}[1]{\boldsymbol{\mathbf{#1}}}% Identity matrix in bold roman
+%\newcommand{\Unit}[1]{\,\mathrm{#1}}% Units in roman
+%\newcommand{\Const}[1]{\mathrm{#1}}% Math constants, functions
+%\newcommand{\Set}[1]{\mathbb{#1}}% Special sets (e.g. real numbers) in blackboard bold
+%\newcommand{\Transpose}{\mathsf{T}} % Matrix Transpose
+%\newcommand{\tr}{\mathrm{tr}} % trace
+
+% 单元格内换行
+%\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}  
+
+
+\endinput
