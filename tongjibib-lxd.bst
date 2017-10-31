@@ -1156,7 +1156,6 @@ FUNCTION {online}
 { output.bibitem
   format.authors output
   author format.key output
-  format.year "year" output.check
   new.block
   format.series.vol.num.title "title" output.check
   "EB" set.mark
@@ -1168,6 +1167,7 @@ FUNCTION {online}
   format.urldate "" output.after
   format.url output
   format.doi output
+  format.year "year" output.check
   fin.entry
 }
 

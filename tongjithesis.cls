@@ -132,7 +132,8 @@
 \RequirePackage{booktabs}
 \RequirePackage[numbers,round,sort&compress]{natbib}
 %added by lxd
-\renewcommand\cite[1] {(\citeauthor{#1} \citeyear{#1})}
+\renewcommand\cite[1] {(\citeauthor{#1},\citeyear{#1}）}
+\renewcommand\citeyearpar[1] {（\citeyear{#1}）}
 %added by lxd 
 \newcommand{\thickhline}{%
     \noalign {\ifnum 0=`}\fi \hrule height 1.5pt
@@ -794,7 +795,7 @@
                   {\protect\numberline{#1}}}
 \newcommand\listofequations{\tongji@listof{equation}}
 \let\l@equation\l@figure
-%\bibpunct{[}{]}{,}{s}{}{,}
+%\bibpunct{（}{）}{，}{a}{}{，}
 \renewcommand\NAT@citesuper[3]{\ifNAT@swa%
   \unskip\kern\p@\textsuperscript{\NAT@@open #1\NAT@@close}%
   \if*#3*\else\ (#3)\fi\else #1\fi\endgroup}
