@@ -89,7 +89,7 @@
   \RequirePackage{xunicode,xltxtra}
   \RequirePackage{xeCJK} 
   \RequirePackage{CJKnumb} 
-  \punctstyle{kaiming}
+  \punctstyle{quanjiao}
   % todo: minor fix of CJKnumb
   \def\CJK@null{\kern\CJKnullspace\Unicode{48}{7}\kern\CJKnullspace}
   \defaultfontfeatures{Mapping=tex-text} % after fontspec
