@@ -220,6 +220,7 @@ MA(q)模型，从自相关函数ACF来看，在移动平均方程的基础上也
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 \subsection{盾构隧道ARMA模型建模}
+\label{chap:armatunnel}
 
 根据上述时间序列理论，建立时间序列模型大致可以分为稳定性判断、模型识别和模型验证几个步骤，如图~\ref{fig:ARMA时间序列模型建模流程图}~所示。
 
@@ -471,25 +472,260 @@ MA(q)模型，从自相关函数ACF来看，在移动平均方程的基础上也
 \subsection{基本原理}
 
 \subsubsection{向量时间序列}
+\label{chap:var}
 
 向量时间序列是根据数据统计性建立的模型，向量时间序列将研究系统的每一个对象作为系统内所有对象的滞后值函数，将单个变量的时间序列推广到多个时间序列组成的向量时间序列。Sims（\citeyear{sims1980macroeconomics}）首先提出向量时间序列的概念，并将其运用于经济领域的动态分析应用中，该模型可用于预测互相联系的序列，并且分析不同系统变量扰动对系统的动态冲击，在经济领域得到较好应用。
 
-向量时间序列也称作向量自回归（VAR）模型，$p$阶VAR模型VAR(p)的数学表达式为
+首先介绍向量时间序列中的向量自回归（VAR）模型，$p$阶VAR模型VAR(p)的数学表达式为
 \begin{equation}
 	\label{equ:varp}
-	{{y}_{t}}={{A}_{1}}{{y}_{t-1}}+\cdots +{{A}_{p}}{{y}_{t-p}}+H{{x}_{t}}+{{\varepsilon }_{t}},t=1,2,\cdots ,T
+	{{y}_{t}}={{\Phi }_{1}}{{y}_{t-1}}+\cdots +{{\Phi }_{p}}{{y}_{t-p}}+H{{x}_{t}}+{{\varepsilon }_{t}},t=1,2,\cdots ,T
 \end{equation}
-式中：$y_t$是$k$维内生变量列向量，$x_t$是$d$维外生变量列向量，$p$是滞后阶数，$T$是样本个数。$k\times k$维矩阵$A_1,A_2,\cdots ,A_p$和$k\times d$维矩阵$H$是待估计的系数矩阵。${\varepsilon }_{t}$是$k$维的新息项，同期新息项之间先关，但不与滞后值相关，定义$\sum$为${\varepsilon }_{t}$的协方差矩阵，为$k\times k$的正定矩阵，展开式~\ref{equ:varp}~
+式中：$y_t$是$k$维内生变量列向量，$x_t$是$d$维外生变量列向量，$p$是滞后阶数，$T$是样本个数。$k\times k$维矩阵${\Phi }_1,{\Phi }_2,\cdots ,{\Phi }_p$和$k\times d$维矩阵$H$是待估计的系数矩阵。${\varepsilon }_{t}$是$k$维的扰动列向量，同期扰动项之间相关，但不与自己的滞后值相关，定义$\sum$为${\varepsilon }_{t}$的协方差矩阵，为$k\times k$的正定矩阵，展开式~\ref{equ:varp}~可以得到
+\begin{equation}
+	\left( \begin{array}{*{35}{l}}
+   {{y}_{1t}}  \\
+   {{y}_{2t}}  \\
+   \cdots   \\
+   {{y}_{kt}}  \\
+\end{array} \right)={{\Phi }_{1}}\left( \begin{array}{*{35}{l}}
+   {{y}_{1t-1}}  \\
+   {{y}_{2t-1}}  \\
+   \cdots   \\
+   {{y}_{kt-1}}  \\
+\end{array} \right)+\cdots +{{\Phi }_{p}}\left( \begin{array}{*{35}{l}}
+   {{y}_{1t-p}}  \\
+   {{y}_{2t-p}}  \\
+   \cdots   \\
+   {{y}_{kt-p}}  \\
+\end{array} \right)+H\left( \begin{array}{*{35}{l}}
+   {{x}_{1t}}  \\
+   {{x}_{2t}}  \\
+   \cdots   \\
+   {{x}_{kt}}  \\
+\end{array} \right)+\left( \begin{array}{*{35}{l}}
+   {{\varepsilon }_{1t}}  \\
+   {{\varepsilon }_{2t}}  \\
+   \cdots   \\
+   {{\varepsilon }_{kt}}  \\
+\end{array} \right)
+\end{equation}
+从式中可知，含有$k$个时间序列的VAR(p)模型是由$k$个方程组组成的。将$y_t$对$x_t$作回归后的残差表达式为
+\begin{equation}
+	{{\tilde{y}}_{t}}={{\tilde{\Phi }}_{1}}{{\tilde{y}}_{t-1}}+\cdots +{{\tilde{\Phi }}_{p}}{{\tilde{y}}_{t-p}}+{{\tilde{\varepsilon }}_{t}}
+\end{equation}
+式中：$\tilde{y}_{t}$是$y_t$对$x_t$回归的残差，${{\tilde{\varepsilon }}_{t}}$是残差回归的扰动项，为了叙述方便，本文不考虑外生变量的影响，则重新将VAR方程写为
+\begin{gather}
+	\label{equ:varsimple}
+	{{y}_{t}}={{\Phi }_{1}}{{y}_{t-1}}+\cdots +{{\Phi }_{p}}{{y}_{t-p}}+{{\varepsilon }_{t}} \\
+	{\Phi }(L)y_t={\varepsilon }_{t}
+\end{gather}
+式中：${\Phi }(L)y_t=I_k-{\Phi }_{1}L-\cdots -{\Phi }_{p}L^p$是滞后算子$L$的$k\times k$参数矩阵，如果行列式$\det \left[ \Phi (L) \right]$的根都在单位圆外，则式~\ref{equ:varsimple}~满足平稳性的条件，并可以表示成无穷阶的向量滑动平均VMA($\infty $)形式
+\begin{gather}
+	\label{equ:vmap}
+	{{y}_{t}}=A(L){{\varepsilon }_{t}} \\ 
+	A(L)=\Phi {{(L)}^{-1}}={{A}_{0}}+{{A}_{1}}L+{{A}_{2}}{{L}^{2}}+\cdots 
+\end{gather}
 
+\subsubsection{结构时间序列}
+
+在~\ref{chap:var}~小节中，可以由式~\ref{equ:varsimple}~看出，没有建立当期变量之间的关系，而将其归在扰动当中，VAR模型并未能提取所有物理意义，故将式~\ref{equ:varp}~称为简化式模型。另一方面，由于现实数据之间是存在关联性的，一般可通过合理的物理意义对估计参数空间施加约束，减少所要估计的参数数量。下面介绍VAR的结构式模型，其包含当前变量的信息。
+
+对于$k$个变量，$p$阶的结构-向量自回归SVAR(p)为
+\begin{equation}
+	\label{equ:svarp}
+	{{C}_{0}}{{y}_{t}}={{\Gamma }_{1}}{{y}_{t-1}}+{{\Gamma }_{2}}{{y}_{y-2}}+\cdots +{{\Gamma }_{p}}{{y}_{t-p}}+{{u}_{t}},\quad t=1,2,\cdots ,T
+\end{equation}
+其中，
+\begin{gather}
+  {{C}_{0}}=\left[ \begin{matrix}
+   1 & -{{c}_{12}} & \cdots  & -{{c}_{1k}}  \\
+   -{{c}_{21}} & 1 & \cdots  & -{{c}_{2k}}  \\
+   \vdots  & \vdots  & \ddots  & \vdots   \\
+   -{{c}_{k1}} & -{{c}_{k2}} & \cdots  & 1  \\
+\end{matrix} \right],\quad {{\Gamma }_{i}}=\left[ \begin{matrix}
+   \gamma _{11}^{(i)} & \gamma _{12}^{(i)} & \cdots  & \gamma _{1k}^{(i)}  \\
+   \gamma _{21}^{(i)} & \gamma _{22}^{(i)} & \cdots  & \gamma _{2k}^{(i)}  \\
+   \vdots  & \vdots  & \ddots  & \vdots   \\
+   \gamma _{k1}^{(i)} & \gamma _{k2}^{(i)} & \cdots  & \gamma _{kk}^{(i)}  \\
+\end{matrix} \right], \nonumber \\ 
+ i=1,2,\cdots ,p,\quad {{u}_{t}}=\left[ \begin{matrix}
+   {{u}_{1t}}  \\
+   {{u}_{2t}}  \\
+   \vdots   \\
+   {{u}_{kt}}  \\
+\end{matrix} \right] \nonumber
+\end{gather}
+式中：$y_t$均是平稳时间序列；$u_t$是白噪声序列，假设其方差-协方差矩阵为单位矩阵$I_k$，${u}_{1t},{u}_{2t},\cdots {u}_{kt}$之间不相关；$c_{jk}$系数表示第$j$个变量的单位变化对第$k$个变量的作用；$\gamma _{jk}^{(i)}$表示第$j$个变量的单位变化对第$k$个变量的$i$阶滞后作用。可以将式~\ref{equ:svarp}~写成滞后算子形式
+\begin{equation}
+	C(L){{y}_{t}}={{u}_{t}},\quad E({{u}_{t}}{{{u}'}_{t}})={{I}_{k}}
+\end{equation}
+式中：$C(L)={{C}_{0}}-{{\Gamma }_{1}}L-{{\Gamma }_{2}}{{L}^{2}}-\cdots -{{\Gamma }_{p}}{{L}^{p}}$，$C(L)$是滞后算子$L$的$k\times k$的参数矩阵。$C_0$是主对角线元素为1的矩阵。如果矩阵多项式$C(L)$可逆，可写出SVAR的无穷阶的结构-向量滑动平均SVMA($\infty $)模型
+\begin{equation}
+	\label{equ:svmap}
+	{{y}_{t}}=B(L){{u}_{t}}
+\end{equation}
+式中：
+\begin{equation}
+	B(L)=C{{(L)}^{-1}},\quad B(L)={{B}_{0}}+{{B}_{1}}L+{{B}_{2}}{{L}^{2}}+\cdots ,\quad {{B}_{0}}=C_{0}^{-1}
+\end{equation}
+联立式~\ref{equ:vmap}~和式~\ref{equ:svmap}~可得最终典型的SVAR模型
+\begin{equation}
+	\label{equ:finalsvar}
+	A(L){\varepsilon }_{t}=B(L){u}_{t}
+\end{equation}
+由于$A_0=I_k$，可知
+\begin{equation}
+	\label{equ:ABrela}
+	{A}_{0}{\varepsilon }_{t}={\varepsilon }_{t}={B_0}{u_t},\quad {B}_0^{-1}{\varepsilon }_{t}=u_t
+\end{equation}
+
+更一般的情况，假设有两个$k\times k$的矩阵$A$和$B$，将$A$乘以公式~\ref{equ:varsimple}~得到
+\begin{equation}
+	A{\Phi }(L)y_t=A{\varepsilon }_{t}
+\end{equation}
+如果矩阵$A$、$B$满足$A{\varepsilon }_{t}=Bu_t,E(u_t)=0,E(u_tu'_t)=I_k$，则将模型称为AB-型的SVAR模型。
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
-\subsection{模型建立与验证}
+\subsubsection{模型识别}
+
+对于$k$元$p$阶的VAR模型（式~\ref{equ:varsimple}），利用极大似然方法，需要的估计参数个数为$k^2p+(k+k^2)/2$，对于相应的$k$元$p$阶的SVAR模型（式~\ref{equ:svarp}）所需的参数个数为$k^2p+k^2$，结合式~\ref{equ:finalsvar}~，根据秩条件，要得到SVAR模型参数的唯一估计，需满足简化式的未知参数不比结构式的未知参数多。因此需对SVAR模型进行约束，至少的约束个数为$k^2p+(k+k^2)/2$-$k^2p+k^2$=$k(k-1)/2$。这些约束可以是施加给当期变量（短期约束），也可以是给时滞变量（长期约束）。特别的，对于AB型SVAR，需要增加$2k^2-k(k+1)/2$个约束。
+
+联立式~\ref{equ:finalsvar}~和式~\ref{equ:ABrela}~可得
+\begin{equation}
+	A(L)B_0u_t=B(L)u_t
+\end{equation}
+式中：$A(L)$和$B(L)$分别是VMA($\infty $)和SVMA($\infty $)的滞后多项式，由该公式可以推断出
+\begin{equation}
+	\label{equ:ABrela2}
+	A_iB_0=B_i, \quad i=0,1,2,\cdots
+\end{equation}
+如果$B_0$已知，可以通过式~\ref{equ:ABrela}~和式~\ref{equ:ABrela2}~计算得到滞后多项式和结构模型的新息$u_t$。故只需对$B_0$进行约束即可识别整个系统。
+
+短期约束可以直接施加在矩阵$B_0$，表示变量对结构模型的同期响应，常见的约束方式是0约束排除方法；由于$B_0=C_0^{-1}$，也可以通过对$C_0$施加约束条件实现短期约束。对于长期约束，一般是通过施加在系数矩阵$B_i(i=1,2,\cdots )$上。
+
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+\subsubsection{脉冲响应分析}
+
+VAR模型和SVAR模型可以分析某一变量的冲击对系统的影响，主要的思想是分析扰动项的变化对各变量的影响。下面以两个时间序列变量$x_t$、$z_t$的模型说明脉冲响应分析的方法。
+\begin{align}
+  \label{equ:varexample}
+  & {{x}_{t}}={{a}_{1}}{{x}_{t-1}}+{{a}_{2}}{{x}_{t-2}}+{{b}_{1}}{{z}_{t-1}}+{{b}_{2}}{{z}_{t-2}}+{{\varepsilon }_{1t}} \\ 
+ & {{z}_{t}}={{c}_{1}}{{x}_{t-1}}+{{c}_{2}}{{x}_{t-2}}+{{d}_{1}}{{z}_{t-1}}+{{d}_{2}}{{z}_{t-2}}+{{\varepsilon }_{2t}} \nonumber
+\end{align}
+式中：$a_i$，$b_i$，$c_i$，$d_i$是待评估参数，${\varepsilon }_{1t}$和${\varepsilon }_{2t}$是扰动项。假设该模型从0时间点开始，$x_{-1}=x_{-2}=z_{-1}=z_{-2}=0$，在0时间点又扰动项${\varepsilon }_{10}=1,{\varepsilon }_{20}=0$，之后扰动项均为0，${\varepsilon }_{1t}={\varepsilon }_{2t}=0(t=1,2,\cdots )$，上述则在0时间给$x$施加脉冲，在$t=0$时：
+\begin{equation}
+	x_0=1,\quad z_0=0 \nonumber
+\end{equation}
+
+将上式代入式~\ref{equ:varexample}~，得当$t=1$时：
+\begin{equation}
+	x_1=a_1,\quad z_1=c_1 \nonumber
+\end{equation}
+
+再把上式结果代入式~\ref{equ:varexample}~，得当$t=2$时：
+\begin{equation}
+	x_2=a_1^2+a_2+b_1c_1,\quad z_2=c_1a_1+c_2+d_1c_1 \nonumber
+\end{equation}
+
+循环执行上述过程，可分别求得$x_0,x_1,x_2,x_3,\cdots $和$z_0,z_1,z_2,z_3,\cdots $，称之为由$x$的脉冲引起的$x$和$z$的响应函数。同样的，可采用类似方法求得不同时期，不同变量脉冲引起的响应函数。
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 \subsection{盾构隧道结构-向量时间序列模型建模}
 
+\subsubsection{VAR模型}
 
+VAR/SVAR模型的建立过程跟ARMA模型类似，可以分为VAR模型建立、AR根平稳性检验（Liitkepohl，\citeyear{liitkepohl1991introduction}）、滞后阶数确定、SVAR模型参数估计、脉冲分析等，如图~\ref{fig:VARSVAR模型建模流程图}~所示。
 
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{chap3/var-process.pdf}
+    \caption{VAR/SVAR模型建模流程图}
+    \label{fig:VARSVAR模型建模流程图}
+\end{figure}
+
+由~\ref{chap:armatunnel}~小节可知，沉降数据的二阶差分为平稳序列，考虑到目前上海1号线一个监测点只有33次的监测数据，为了更好估计模型参数，本节只选择三个相邻的监测点时间序列作为研究，依次为里程12916.05、12920.75、12944.4的三个沉降监测点，分别记为$s_1$、$s_2$和$s_3$。对于滞后阶数，如果滞后阶数选择过大，则待估计参数会较多，给参数估计带来困难；如果滞后阶数选择过小，则不能保证模型的准确性，表~\ref{tab:VAR模型最优滞后阶数确定}~所示为根据不同准则计算的滞后阶数值，综合考虑选择滞后阶数为3。因此，盾构隧道沉降的VAR模型为
+\begin{equation}
+	\left( \begin{matrix}
+   {{\nabla }^{2}}{{s}_{1t}}  \\
+   {{\nabla }^{2}}{{s}_{2t}}  \\
+   {{\nabla }^{2}}{{s}_{3t}}  \\
+\end{matrix} \right)={{\Phi }_{1}}\left( \begin{matrix}
+   {{\nabla }^{2}}{{s}_{1t-1}}  \\
+   {{\nabla }^{2}}{{s}_{2t-1}}  \\
+   {{\nabla }^{2}}{{s}_{3t-1}}  \\
+\end{matrix} \right)+{{\Phi }_{2}}\left( \begin{matrix}
+   {{\nabla }^{2}}{{s}_{1t-2}}  \\
+   {{\nabla }^{2}}{{s}_{2t-2}}  \\
+   {{\nabla }^{2}}{{s}_{3t-2}}  \\
+\end{matrix} \right)+{{\Phi }_{3}}\left( \begin{matrix}
+   {{\nabla }^{2}}{{s}_{1t-3}}  \\
+   {{\nabla }^{2}}{{s}_{2t-3}}  \\
+   {{\nabla }^{2}}{{s}_{3t-3}}  \\
+\end{matrix} \right)+\left( \begin{matrix}
+   {{\varepsilon }_{1t}}  \\
+   {{\varepsilon }_{2t}}  \\
+   {{\varepsilon }_{3t}}  \\
+\end{matrix} \right) \nonumber
+\end{equation}
+
+\begin{table}[htb!]
+  \centering
+  \caption{VAR模型最优滞后阶数确定}
+    \begin{tabular}{?m{6em}<{\centering}"m{6em}<{\centering}"m{6em}<{\centering}"m{6em}<{\centering}"m{6em}<{\centering}?}
+    \thickhline
+    时滞阶数  & LR    & FPE   & AIC   & BIC \bigstrut\\
+    \thinhline
+    1     & NA    & 85.63655 & 12.96098 &   13.39293* \bigstrut\\
+    \thinhline
+    2     & 10.19667 & 104.6981 & 13.14209 & 14.00598 \bigstrut\\
+    \thinhline
+    3     &   27.98821* &   45.58901* &   12.20505* & 13.54969 \bigstrut\\
+    \thinhline
+    4     & 10.73206 & 48.97398 & 12.25386 & 13.93284 \bigstrut\\
+    \thickhline
+    \multicolumn{5}{l}{注：*号代表在该准则下推荐选择的滞后阶数}
+    \end{tabular}%
+  \label{tab:VAR模型最优滞后阶数确定}%
+\end{table}%
+
+采用普通最小二乘法对VAR模型参数进行估计，估计结果如表~\ref{tab:VAR模型参数估计结果}~所示。
+
+\begin{table}[htb!]
+  \centering
+  \caption{VAR模型参数估计结果}
+    \begin{tabular}{?m{7em}<{\centering}"m{7em}<{\centering}"m{7em}<{\centering}"m{7em}<{\centering}?}
+    \thickhline
+          & ${{\nabla }^{2}}{{s}_{1t}}$    & ${{\nabla }^{2}}{{s}_{2t}}$    & ${{\nabla }^{2}}{{s}_{3t}}$ \bigstrut\\
+    \thinhline
+    ${{\nabla }^{2}}{{s}_{1t-1}}$    & 1.808002 & 2.910007 & 2.993686 \bigstrut\\
+    \thinhline
+    ${{\nabla }^{2}}{{s}_{1t-2}}$    & 2.835468 & 3.781712 & 3.967245 \bigstrut\\
+    \thinhline
+    ${{\nabla }^{2}}{{s}_{1t-3}}$    & 1.878876 & 2.392324 & 2.510276 \bigstrut\\
+    \thinhline
+    ${{\nabla }^{2}}{{s}_{2t-1}}$    & -2.269614 & -3.406587 & -2.413975 \bigstrut\\
+    \thinhline
+    ${{\nabla }^{2}}{{s}_{2t-2}}$    & -2.358327 & -3.242743 & -2.640396 \bigstrut\\
+    \thinhline
+    ${{\nabla }^{2}}{{s}_{2t-3}}$    & -0.92867 & -1.43269 & -1.22717 \bigstrut\\
+    \thinhline
+    ${{\nabla }^{2}}{{s}_{3t-1}}$    & -0.610521 & -0.615474 & -1.669202 \bigstrut\\
+    \thinhline
+    ${{\nabla }^{2}}{{s}_{3t-2}}$    & -1.235985 & -1.288218 & -2.052227 \bigstrut\\
+    \thinhline
+    ${{\nabla }^{2}}{{s}_{3t-3}}$    & -1.39714 & -1.375489 & -1.716278 \bigstrut\\
+    \thickhline
+    \end{tabular}%
+  \label{tab:VAR模型参数估计结果}%
+\end{table}%
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{chap3/arroot.pdf}
+    \caption{AR根平稳性检验}
+    \label{fig:AR根平稳性检验}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{预测模型的应用}
