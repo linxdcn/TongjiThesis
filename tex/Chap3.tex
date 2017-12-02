@@ -116,6 +116,7 @@
 
 滑动平均MA模型的$q$阶形式为
 \begin{align}
+  \label{equ:mama}
   & {{Y}_{t}}={{\varepsilon }_{t}}+{{\theta }_{1}}{{\varepsilon }_{t-1}}+{{\theta }_{2}}{{\varepsilon }_{t-2}}+\cdots +{{\theta }_{q}}{{\varepsilon }_{t-q}} \nonumber \\ 
  & \quad ={{\varepsilon }_{t}}+\sum\limits_{j=1}^{q}{{{\theta }_{j}}{{\varepsilon }_{t-j}}} \\ 
  & \quad =\theta (L){{\varepsilon }_{t}} \nonumber
@@ -461,7 +462,7 @@ MA(q)模型，从自相关函数ACF来看，在移动平均方程的基础上也
         \includegraphics[width=0.61\textwidth]{chap3/sett-13145.20.eps} \\ 
         (c)~里程13145.20沉降监测点数据 \\
     \end{tabular}
-    \caption{不同沉降监测点AR(3)模型拟合与预测结果} 
+    \caption{1号线不同沉降监测点AR(3)模型拟合与预测结果} 
     \label{fig:不同沉降监测点AR3模型拟合与预测结果} 
 \end{figure}
 
@@ -582,6 +583,7 @@ MA(q)模型，从自相关函数ACF来看，在移动平均方程的基础上也
 
 更一般的情况，假设有两个$k\times k$的矩阵$A$和$B$，将$A$乘以公式~\ref{equ:varsimple}~得到
 \begin{equation}
+	\label{equ:svarab}
 	A{\Phi }(L)y_t=A{\varepsilon }_{t}
 \end{equation}
 如果矩阵$A$、$B$满足$A{\varepsilon }_{t}=Bu_t,E(u_t)=0,E(u_tu'_t)=I_k$，则将模型称为AB-型的SVAR模型。
@@ -646,6 +648,7 @@ VAR/SVAR模型的建立过程跟ARMA模型类似，可以分为VAR模型建立�
 
 由~\ref{chap:armatunnel}~小节可知，沉降数据的二阶差分为平稳序列，考虑到目前上海1号线一个监测点只有33次的监测数据，为了更好估计模型参数，本节只选择三个相邻的监测点时间序列作为研究，依次为里程12916.05、12920.75、12944.4的三个沉降监测点，分别记为$s_1$、$s_2$和$s_3$。对于滞后阶数，如果滞后阶数选择过大，则待估计参数会较多，给参数估计带来困难；如果滞后阶数选择过小，则不能保证模型的准确性，表~\ref{tab:VAR模型最优滞后阶数确定}~所示为根据不同准则计算的滞后阶数值，综合考虑选择滞后阶数为3。因此，盾构隧道沉降的VAR模型为
 \begin{equation}
+	\label{equ:var}
 	\left( \begin{matrix}
    {{\nabla }^{2}}{{s}_{1t}}  \\
    {{\nabla }^{2}}{{s}_{2t}}  \\
@@ -666,7 +669,7 @@ VAR/SVAR模型的建立过程跟ARMA模型类似，可以分为VAR模型建立�
    {{\varepsilon }_{1t}}  \\
    {{\varepsilon }_{2t}}  \\
    {{\varepsilon }_{3t}}  \\
-\end{matrix} \right) \nonumber
+\end{matrix} \right)
 \end{equation}
 
 \begin{table}[htb!]
@@ -689,7 +692,7 @@ VAR/SVAR模型的建立过程跟ARMA模型类似，可以分为VAR模型建立�
   \label{tab:VAR模型最优滞后阶数确定}%
 \end{table}%
 
-采用普通最小二乘法对VAR模型参数进行估计，估计结果如表~\ref{tab:VAR模型参数估计结果}~所示。
+采用普通最小二乘法对VAR模型参数进行估计，估计结果如表~\ref{tab:VAR模型参数估计结果}~所示。并对该模型进行AR根平稳性检验，如图~\ref{fig:AR根平稳性检验}~所示，模型特征根倒数均落在单位圆内，说明建立的VAR(3)模型具有良好的稳定性。在式~\ref{equ:var}~中并未包含当前沉降之间的关系，且从表~\ref{tab:残差同期相关矩阵}~知残差的同期相关矩阵存在关联，存在同期相关。
 
 \begin{table}[htb!]
   \centering
@@ -722,21 +725,223 @@ VAR/SVAR模型的建立过程跟ARMA模型类似，可以分为VAR模型建立�
 
 \begin{figure}[htb!]
     \centering
-    \includegraphics[width=0.6\textwidth]{chap3/arroot.pdf}
+    \includegraphics[width=0.5\textwidth]{chap3/arroot.pdf}
     \caption{AR根平稳性检验}
     \label{fig:AR根平稳性检验}
+\end{figure}
+
+\begin{table}[htb!]
+  \centering
+  \caption{残差同期相关矩阵}
+    \begin{tabular}{?m{6em}<{\centering}"m{6em}<{\centering}"m{6em}<{\centering}"m{6em}<{\centering}?}
+    \thickhline
+          & e1    & e2    & e3 \bigstrut\\
+    \thinhline
+    e1    & 1     & 0.97507 & 0.906448 \bigstrut\\
+    \thinhline
+    e2    & 0.97507 & 1     & 0.927982 \bigstrut\\
+    \thinhline
+    e3    & 0.906448 & 0.927982 & 1 \bigstrut\\
+    \thickhline
+    \end{tabular}%
+  \label{tab:残差同期相关矩阵}%
+\end{table}%
+
+绘制VAR(3)模型计算的沉降二阶差分与原始数据二阶差分的对比图（图~\ref{fig:VAR3模型结果图}a）和二阶差分的残差图（图~\ref{fig:VAR3模型结果图}b）。二阶差分拟合的$R^2$为0.857，较ARMA模型的二阶差分拟合$R^2$提高了0.172，原始沉降数据的拟合$R^2$为0.985，较ARMA模型原始沉降数据的拟合$R^2$提高了0.017。VAR模型增加了相邻监测点时间序列的关联性，对沉降数据差分后随机过程的拟合度提高了。但VAR模型未考虑变量的同期关联性，即评估参数和扰动项中都包含了同期变量之间的关系，导致VAR模型的物理意义难以解释。若要对变量之间的关系进行分析，需采用引入了结构方程的SVAR模型。
+
+\begin{figure}[htb!] 
+    \centering 
+    \begin{tabular}{c} 
+        \includegraphics[width=0.7\textwidth]{chap3/var3diff2data.eps} \\ 
+        (a)~二阶差分原始数据与预测数据图 \\
+        \includegraphics[width=0.7\textwidth]{chap3/var3-residual.eps} \\ 
+        (b)~二阶差分预测残差图 \\
+    \end{tabular}
+    \caption{VAR(3)模型结果图} 
+    \label{fig:VAR3模型结果图} 
+\end{figure}
+
+\subsubsection{SVAR模型}
+
+首先根据式~\ref{equ:svarab}~建立变量$s_1$、$s_2$和$s_3$的SVAR(3)模型为
+\begin{equation}
+	A{{\varepsilon }_{t}}=B{{u}_{t}},\quad t=1,2,\cdots ,T \nonumber
+\end{equation}
+式中变量和参数矩阵为
+\begin{gather}
+  A\text{=}\left( \begin{matrix}
+   1 & {{a}_{12}} & {{a}_{13}}  \\
+   {{a}_{21}} & 1 & a{}_{_{23}}  \\
+   {{a}_{31}} & {{a}_{32}} & 1  \\
+\end{matrix} \right),\quad B=\left( \begin{matrix}
+   1 & 0 & 0  \\
+   0 & 1 & 0  \\
+   0 & 0 & 1  \\
+\end{matrix} \right), \nonumber \\ 
+ {{\varepsilon }_{t}}={{\left( {{\varepsilon }_{1t}},{{\varepsilon }_{2t}},{{\varepsilon }_{3t}} \right)}^{\prime }},\quad {{u}_{t}}={{\left( {{u}_{1t}},{{u}_{2t}},{{u}_{3t}} \right)}^{\prime }} \nonumber 
+\end{gather}
+式中：$\varepsilon _t$是VAR模型的扰动项；${u}_{1t}$，${u}_{2t}$，${u}_{3t}$表示作用在$s_1$，$s_2$，$s_3$上的结构式冲击；$a_{ij}$表示变量之间的相互作用。该AB型的SVAR模型有3个变量，对于$A,B$矩阵需施加$2k^2-k(k+1)/2=12$个约束，$B$取单位矩阵，$A$取对角线元素为1，相当于施加了12个约束，结合沉降数据实际情况，另外施加$a_{12}=a_{21}$，$a_{13}=a_{31}$，$a_{23}=a_{32}$三个约束，即变量相互之间的作用是一样的。参数估计结果为
+\begin{equation}
+	\left( \begin{matrix}
+   1.00 & -0.67 & -0.49  \\
+   -0.67 & 1.00 & -0.52  \\
+   -0.49 & -0.52 & 1.00  \\
+\end{matrix} \right)\left( \begin{matrix}
+   {{\varepsilon }_{1}}  \\
+   {{\varepsilon }_{2}}  \\
+   {{\varepsilon }_{3}}  \\
+\end{matrix} \right)\text{=}\left( \begin{matrix}
+   1 & 0 & 0  \\
+   0 & 1 & 0  \\
+   0 & 0 & 1  \\
+\end{matrix} \right)\left( \begin{matrix}
+   {{u}_{1}}  \\
+   {{u}_{2}}  \\
+   {{u}_{3}}  \\
+\end{matrix} \right) \nonumber
+\end{equation}
+
+从评估结果可知，$s_1$与$s_2$之间的相互作用最大，$s_1$与$s_3$之间的相互作用最小，即距离较近的监测点比距离较远的监测点的作用影响更大，基本符合实际中的认知。由式~\ref{equ:svarab}~可知，最终SVAR模型与VAR模型的估计参数是一致的，对沉降数据的拟合和预测结果是相同的，但SVAR的物理意义明确，可对模型进行解释。
+
+\subsubsection{模型预测}
+
+与ARMA模型的预测一样，选择地铁1号线里程为12670.10、12916.05、13145.20的三个沉降监测点进行预测。采用静态预测和动态预测相结合的方式，预测结果如图~\ref{fig:不同沉降监测点SVAR3模型拟合与预测结果}~所示。对比图~\ref{fig:不同沉降监测点AR3模型拟合与预测结果}~可以发现，SVAR模型的精度均比ARMA模型的精度要高，SVAR模型对于沉降二阶差分的拟合度在0.75以上，对于沉降原始数据的拟合度在0.97以上。且SVAR模型模拟了距离越近的监测点的沉降影响越大这一现象，更符合实际情况。
+
+\begin{figure}[htbp] 
+    \centering 
+    \begin{tabular}{c} 
+        \includegraphics[width=0.61\textwidth]{chap3/sett2-1267010.eps} \\ 
+        (a)~里程12670.10沉降监测点数据 \\
+        \includegraphics[width=0.61\textwidth]{chap3/sett2-1291605.eps} \\ 
+        (b)~里程12916.05沉降监测点数据 \\
+        \includegraphics[width=0.61\textwidth]{chap3/sett2-1314520.eps} \\ 
+        (c)~里程13145.20沉降监测点数据 \\
+    \end{tabular}
+    \caption{1号线不同沉降监测点SVAR(3)模型拟合与预测结果} 
+    \label{fig:不同沉降监测点SVAR3模型拟合与预测结果} 
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{预测模型的应用}
 
-1.采用1号线数据预测2号线束
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+\subsection{模拟预测其他线路沉降}
 
-2.对于外部突发情况适应性高
+观察地铁1号线与2号线的沉降曲线，可发现沉降规律都是在地铁建成后一段时间内沉降迅速增加，随着运营年限的增长，沉降逐渐趋于稳定，在某一范围内波动，或上浮，或下沉。2号线的沉降数据与1号线的沉降数据形状上吻合，如图~\ref{fig:1号线与2号线沉降数据对比}~所示，通过将2号线某一监测点的数据沿着时间维度和沉降维度的不断平移，可计算两条曲线的Pearson相关系数最高可达0.907，对于沉降模式类似的地铁2号线，可用地铁1号线建立的ARMA(3,0)和SVAR(3)模型进行模拟预测。
 
-3.可考虑沉降数据空间关联性
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=1.0\textwidth]{chap3/lin1vsline2.eps}
+    \caption{1号线与2号线沉降数据对比}
+    \label{fig:1号线与2号线沉降数据对比}
+\end{figure}
 
-拓扑图
+对地铁2号线选取南京东路站至陆家嘴站上行线隧道进行分析，分别选取里程为19642.82、18974.27、18593.96的监测点作为分析对象，与1号线类似，采用静态预测和动态预测相结合的方式，得出沉降曲线，同时也预测最后一次监测时间之后五年的沉降数据，给出预测五年后沉降的误差范围。图~\ref{fig:2号线不同沉降监测点AR3模型拟合与预测结果}~所示结果为采用1号线建立的ARMA(3,0)模型模拟的结果，沉降二阶差分的$R^2$在0.7-0.8范围，原始数据的$R^2$则在0.8左右，较1号线的拟合结果有所降低，且后五年的预测结果受最后几次监测数据影响较大。而采用SVAR(3)模型拟合的沉降二阶差分$R^2$在0.8以上，原始数据$R^2$在0.9左右，较ARMA模型更精确，且对于后五年的预测数据，则会综合考虑多维沉降的后几次监测数据。
+
+\begin{figure}[htbp] 
+    \centering 
+    \begin{tabular}{c} 
+        \includegraphics[width=0.61\textwidth]{chap3/ar-line2-19642.82.eps} \\ 
+        (a)~里程19642.82沉降监测点数据 \\
+        \includegraphics[width=0.61\textwidth]{chap3/ar-line2-18974.27.eps} \\ 
+        (b)~里程18974.27沉降监测点数据 \\
+        \includegraphics[width=0.61\textwidth]{chap3/ar-line2-18593.96.eps} \\ 
+        (c)~里程18593.96沉降监测点数据 \\
+    \end{tabular}
+    \caption{2号线不同沉降监测点AR(3)模型拟合与预测结果} 
+    \label{fig:2号线不同沉降监测点AR3模型拟合与预测结果} 
+\end{figure}
+
+\begin{figure}[htbp] 
+    \centering 
+    \begin{tabular}{c} 
+        \includegraphics[width=0.61\textwidth]{chap3/var-line2-19642.82.eps} \\ 
+        (a)~里程19642.82沉降监测点数据 \\
+        \includegraphics[width=0.61\textwidth]{chap3/var-line2-18974.27.eps} \\ 
+        (b)~里程18974.27沉降监测点数据 \\
+        \includegraphics[width=0.61\textwidth]{chap3/var-line2-18593.96.eps} \\ 
+        (c)~里程18593.96沉降监测点数据 \\
+    \end{tabular}
+    \caption{2号线不同沉降监测点SVAR(3)模型拟合与预测结果} 
+    \label{fig:2号线不同沉降监测点SVAR3模型拟合与预测结果} 
+\end{figure}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+\subsection{适应不确定因素的预测结果}
+
+由于时间序列的静态预测方法是基于真实历史数据进行计算，在某些不确定因素影响下，当沉降监测数据发生异常变化时，时间序列模型可根据异常数据调整下一次预测的数值。以某一监测点为例，假设在沉降数据在2003年开始突然急速下降，在接下来2年时间内下沉幅度超过60mm，而这种下降趋势在2005年之后趋于平稳，如图~\ref{fig:沉降异常数据的时间序列模型}a~所示，时间序列拟合的$R^2$为0.974。又假设沉降数据在2005年之后平稳发展，在2008年开始明显回弹，回弹趋势持续到2012年之后，如图~\ref{fig:沉降异常数据的时间序列模型}b~所示，拟合$R^2$为0.966。可见时间序列模型对于不确定因素造成的异常数据适应性较强。
+
+\begin{figure}[htbp] 
+    \centering 
+    \begin{tabular}{c} 
+        \includegraphics[width=0.65\textwidth]{chap3/exception-sett.eps} \\ 
+        (a)~沉降数据在运营一段时间后急速下降 \\
+        \includegraphics[width=0.65\textwidth]{chap3/exception-sett2.eps} \\ 
+        (b)~沉降数据在平稳后有较大回弹 \\
+    \end{tabular}
+    \caption{沉降异常数据的时间序列模型} 
+    \label{fig:沉降异常数据的时间序列模型} 
+\end{figure}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+\subsection{考虑时间-空间两维度预测}
+
+自回归滑动平均ARMA模型原理的拓扑结果如图~\ref{fig:ARMA模型原理的拓扑结构}~所示，根据式~\ref{equ:AR1}，自回归模型的下一次预测是根据多项滞后项与同期新息项组成，由式~\ref{equ:mama}~知滑动平均模型的一下次预测是根据多项滞后项的新息项计算，新息项是不可观测的，只能通过模型从$t=0$时刻开始迭代计算。可见，当建立好时间序列模型，并对模型参数进行估计确认后，ARMA模型的预测数据只与该时间序列历史数据有关系，即每一条时间序列都是独立的。
+
+如果ARMA模型需考虑关联不同时间序列数据，能改进的步骤只能是参数估计阶段。本文采用的参数估计方法是对每一条时间序列单独估计一次，或者也可以将所有时间序列组合在一起，综合估计一组最合适的参数。但这种方法并不是真正意义上关联性分析，只是采用所有数据估计参数的平均值。
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=1.0\textwidth]{chap3/arma-topology.pdf}
+    \caption{ARMA模型原理的拓扑结构}
+    \label{fig:ARMA模型原理的拓扑结构}
+\end{figure}
+
+结构-向量时间序列SVAR模型则可以从时间和空间两个维度对数据进行分析，其原理的拓扑结构如图~\ref{fig:SVAR模型原理的拓扑结构}~所示。空间关联性体现在两方面：一方面是当期预测数据不仅跟自身时间序列的滞后项有关，还与邻近时间序列的滞后项有关，即将ARMA模型的时间序列扩展成向量式形式；另一方面，对于不同时间序列的同期数据，采用结构方程方法建立同期结构式，可考虑同期变量之间的相互作用。
+
+需要注意的是，VAR和SVAR的参数估计结果是一致的，SVAR在VAR模型的基础上揭示了变量之间的相互作用。由于VAR/SVAR模型参数较多，需要的样本量会比ARMA模型的多，以本文的SVAR(3)模型为例，该模型总共有3个变量，每个变量的时间序列数据均为33条记录，考虑滞后阶数为3的模型的待估计参数有27个，对于3个变量的系统，每条记录对应3个结构式方程，故总共有99组方程，即1个待估计参数对应着3.7个样本。如果待估计参数对应的样本数太少，会出现“过拟合”的现象，估计结果也不一定可靠。
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=1.0\textwidth]{chap3/svar-topology.pdf}
+    \caption{SVAR模型原理的拓扑结构}
+    \label{fig:SVAR模型原理的拓扑结构}
+\end{figure}
+
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+\subsection{盾构隧道服役性能预测}
+
+如本章一开始所述，目前上海地铁对于评估隧道服役性能所需的数据，如收敛、渗漏水、裂缝和剥落等病害的采集时长以及采集频率较低，根据上海申通地铁公司提供的相关数据资料，自地铁隧道建成至今，收敛数据和病害数据的采集次数在3-5次之间，由现有数据不足以对未来数据进行预测。
+
+因此，在计算TSI时将式~\ref{tsi}~中的收敛值和其他病害值设为0，对于$TSI$预测的思路是先由沉降历史数据，采用SVAR(3)模型预测未来若干年的沉降数据走势，再据此计算$TSI$，从而得到$TSI$的预测值。
+
+\begin{figure}[htbp] 
+    \centering 
+    \begin{tabular}{c} 
+        \includegraphics[width=0.95\textwidth]{chap3/sett-predict-line1.eps} \\ 
+        (a)~地铁1号线区间沉降曲线 \\
+        \includegraphics[width=0.95\textwidth]{chap3/sett2-predict-line1.eps} \\ 
+        (b)~地铁1号线监测点沉降曲线 \\
+        \includegraphics[width=0.95\textwidth]{chap3/tsi-predict-line1.eps} \\ 
+        (c)~地铁1号线TSI预测结果 \\
+    \end{tabular}
+    \caption{地铁1号线沉降预测TSI结果} 
+    \label{fig:地铁1号线沉降预测TSI结果} 
+\end{figure}
+
+\begin{figure}[htbp] 
+    \centering 
+    \begin{tabular}{c} 
+        \includegraphics[width=0.95\textwidth]{chap3/sett-predict-line2.eps} \\ 
+        (a)~地铁2号线区间沉降曲线 \\
+        \includegraphics[width=0.95\textwidth]{chap3/sett2-predict-line2.eps} \\ 
+        (b)~地铁2号线监测点沉降曲线 \\
+        \includegraphics[width=0.95\textwidth]{chap3/tsi-predict-line2.eps} \\ 
+        (c)~地铁2号线TSI预测结果 \\
+    \end{tabular}
+    \caption{地铁2号线沉降预测TSI结果} 
+    \label{fig:地铁2号线沉降预测TSI结果} 
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{本章小结}
