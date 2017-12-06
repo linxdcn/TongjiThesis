@@ -131,9 +131,14 @@ Goosens 等 (1994)，沙和尚等 (2005)
 
 ![](/example/table1.jpg)
 
+## 字体说明
+
+- 模板使用了TeXlive默认的Fandol中文字体（Bold支持较好），没有Fandol字体可从[这里](https://www.ctan.org/tex-archive/fonts/fandol)下载
+- 如需使用Windows或者Mac自带的字体，可将cls文件对应的代码取消注释
+- 可如需使用Adobe或其他字体，可自行在cls文件中修改。
+
 ## 注意
 - 未完全测试，尽量使用UTF-8文件编码，xelatex编译，以免出现意外问题。
-- 模板使用了TeXlive默认的Fandol中文字体（Bold支持较好），没有Fandol字体可从[这里](https://www.ctan.org/tex-archive/fonts/fandol)下载；如需使用Windows或者Mac自带的字体，可将cls文件对应的代码取消注释；可如需使用Adobe或其他字体，可自行在cls文件中修改。
 - 已知问题：
     + xelatex编译速度比pdflatex慢，需要耐心等待。
     + 用TeXStudio可能编译时会跳出对话框，提示“日志文件很大，确认载入？”，选择“是”即可照样继续
