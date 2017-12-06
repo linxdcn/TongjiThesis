@@ -4,63 +4,87 @@
 
 \section{引言}
 
-铺垫几句……
+该模板由linxdcn：https://github.com/linxdcn/TongjiThesis~修改维护。
 
-\section{XX理论}
+模板最初由Tongji LUG创作，2014年，https://sourceforge.net/projects/tongjithesis/。版本之后似乎已停止维护。此版本融合了wildwolf、svandex：https://github.com/svandex/masthesis、zhao-chen：https://github.com/zhao-chen/TongjiThesis~的部分修改。
 
-某年某大神发现……
+\section{论文模板使用}
 
-\subsection{理论分支一}
+下述给出该模板论文的使用建议。
 
-先看一个我们都见过的公式
+\subsection{参考文献引用}
+
+由于学校要求在正文中用“等”表示超过3为作者，在参考文献中又要用“et al”来表示超过3为作者，另外中文的“等”前面不需要空格，英文的“等”前需要空格，没找到太好的办法。所以可根据自己需求选择下面的几种效果。
+
+\subsubsection{效果1}
+
+如果有TeX方面的问题可参考资料英文引用\cite{companion}，中文引用\cite{shaheshang}。
+
+\subsubsection{效果2}
+
+如果有TeX方面的问题可参考资料英文引用(Goosens等, \citeyear{companion})，中文引用(沙和尚等, \citeyear{shaheshang})。
+
+\subsubsection{效果3}
+
+如果有TeX方面的问题可参考资料Goosens等\citeyearpar{companion}，沙和尚等\citeyearpar{shaheshang}。
+
+\subsection{添加公式}
+
+\subsubsection{效果1}
+
 \begin{equation}
 	E = m c^2
 \end{equation}
 其中$E$表示……
 
-\subsection{理论分支二}
+\subsection{添加图}
 
-再看一些图表。图\ref{fig:logo}是我们的校徽和校名，也出现在了本论文模板的封面上。不用在意表\ref{tab:events}展示的内容，它只是个示例。
-\begin{figure}[!h]
+\subsubsection{效果1}
+
+图~\ref{fig:logo}~是我们的校徽和校名，也出现在了本论文模板的封面上。Latex本身有subfigure的命令，但我觉得这个不如用表格来管理图片方便，直观。
+
+\begin{figure}[htb!]
 	\centering
-	\includegraphics[width=0.75\textwidth]{tongji-whole-logo.eps}
+	\includegraphics[width=0.5\textwidth]{tongji-whole-logo.eps}
 	\caption{校徽和校名}
 	\label{fig:logo}
 \end{figure}
 
-效果二
+\subsubsection{效果2}
 
-\begin{figure}[!h] 
+\begin{figure}[htb!] 
 	\centering 
 	\begin{tabular}{cc} 
-		\includegraphics[width=6cm]{tongji-whole-logo.eps} & \includegraphics[width=6cm]{tongji-whole-logo.eps}\\ 
+		\includegraphics[width=0.45\textwidth]{tongji-whole-logo.eps} & \includegraphics[width=0.45\textwidth]{tongji-whole-logo.eps}\\ 
 		(a)图1 & (b)图2
 	\end{tabular} 
 	\caption{同济大学} 
 	\label{fig:subimage} 
 \end{figure}
 
-效果三
+\subsubsection{效果3}
 
-\begin{figure}[!h] 
+\begin{figure}[htb!] 
 	\noindent 
 	\begin{minipage}[t]{.48\linewidth} 
 		\centering 
-			\includegraphics[width=6cm]{tongji-whole-logo.eps} 
+			\includegraphics[width=0.9\textwidth]{tongji-whole-logo.eps} 
 		\caption{图1} 
 		\label{fig:quadratic} 
 	\end{minipage} 
 	\begin{minipage}[t]{.48\linewidth} 
 		\centering 
-		\includegraphics[width=6cm]{tongji-whole-logo.eps} 
+		\includegraphics[width=0.9\textwidth]{tongji-whole-logo.eps} 
 			\caption{图2} 
 		\label{fig:triorder} 
 	\end{minipage} 
 \end{figure}
 
-表格效果
+\subsection{添加表}
 
-\begin{table}[!htb]
+不用在意表~\ref{tab:events}~展示的内容，它只是个示例。
+
+\begin{table}[htb!]
   	\centering
   	\caption{Add caption}
   	\label{tab:events}
@@ -78,7 +102,20 @@
   \label{tab:addlabel}
 \end{table}
 
+\subsection{其他说明}
 
+未完全测试，尽量使用UTF-8文件编码，xelatex编译，以免出现意外问题。
+
+模板使用了TeXlive默认的Fandol中文字体（Bold支持较好），没有Fandol字体可从：https://www.ctan.org/tex-archive/fonts/fandol~下载；如需使用Windows或者Mac自带的字体，可将cls文件对应的代码取消注释；可如需使用Adobe或其他字体，可自行在cls文件中修改。
+
+\subsection{已知问题}
+
+xelatex编译速度比pdflatex慢，需要耐心等待。
+
+用TeXStudio可能编译时会跳出对话框，提示“日志文件很大，确认载入？”，选择“是”即可照样继续
+
+推荐使用Sublime Text + LaTeXTools，常用快捷键：由Latex查找PDF：ctrl+L(松开接)J；清理临时文件：ctrl+L(松开接)Backspace
 
 \subsection{本章小结}
-本章……
+
+介绍了同济论文模板的使用。
