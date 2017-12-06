@@ -89,19 +89,35 @@
   \RequirePackage{xunicode,xltxtra}
   \RequirePackage{xeCJK} 
   \RequirePackage{CJKnumb} 
-  \punctstyle{kaiming}
+  \punctstyle{quanjiao}
   % todo: minor fix of CJKnumb
   \def\CJK@null{\kern\CJKnullspace\Unicode{48}{7}\kern\CJKnullspace}
   \defaultfontfeatures{Mapping=tex-text} % after fontspec
-  \setCJKmainfont{SimSun}%{Noto Serif CJK SC} 
-  \setCJKsansfont{SimHei}%{Noto Sans CJK SC Regular}
-  \setCJKmonofont{KaiTi}
-  \setCJKfamilyfont{song}{SimSun}
-  \setCJKfamilyfont{hei}{SimHei}
-  \setCJKfamilyfont{fs}{FangSong}
-  \setCJKfamilyfont{kai}{KaiTi}
-  %\setCJKfamilyfont{li}{LiSu} % todo: Windows自带字体，无粗体可用
-  %\setCJKfamilyfont{you}{Adobe Kaiti Std} % 暂未发现需要
+  \setCJKmainfont{FandolSong}%{Noto Serif CJK SC} 
+  \setCJKsansfont{FandolHei}%{Noto Sans CJK SC Regular}
+  \setCJKmonofont{FandolKai}
+  \setCJKfamilyfont{song}{FandolSong}
+  \setCJKfamilyfont{hei}{FandolHei}
+  \setCJKfamilyfont{fs}{FandolFang}
+  \setCJKfamilyfont{kai}{FandolKai}
+
+  % For Windows users, the default font can be used
+  % \setCJKmainfont{SimSun}%{Noto Serif CJK SC} 
+  % \setCJKsansfont{SimHei}%{Noto Sans CJK SC Regular}
+  % \setCJKmonofont{KaiTi}
+  % \setCJKfamilyfont{song}{SimSun}
+  % \setCJKfamilyfont{hei}{SimHei}
+  % \setCJKfamilyfont{fs}{FangSong}
+  % \setCJKfamilyfont{kai}{KaiTi}
+
+  % For Mac users, the default font can be used
+  % \setCJKmainfont{STSong}
+  % \setCJKsansfont{STHeiti}
+  % \setCJKmonofont{STKaiti}
+  % \setCJKfamilyfont{song}{STSong}
+  % \setCJKfamilyfont{hei}{STHeiti}
+  % \setCJKfamilyfont{fs}{STFangsong}
+  % \setCJKfamilyfont{kai}{STKaiti}
 
   \setmainfont{Times New Roman}
   \setsansfont{Arial}
@@ -132,7 +148,8 @@
 \RequirePackage{booktabs}
 \RequirePackage[numbers,round,sort&compress]{natbib}
 %added by lxd
-\renewcommand\cite[1] {(\citeauthor{#1} \citeyear{#1})}
+\renewcommand\cite[1] {(\citeauthor{#1},\citeyear{#1}）}
+\renewcommand\citeyearpar[1] {（\citeyear{#1}）}
 %added by lxd 
 \newcommand{\thickhline}{%
     \noalign {\ifnum 0=`}\fi \hrule height 1.5pt
@@ -794,7 +811,7 @@
                   {\protect\numberline{#1}}}
 \newcommand\listofequations{\tongji@listof{equation}}
 \let\l@equation\l@figure
-%\bibpunct{[}{]}{,}{s}{}{,}
+%\bibpunct{（}{）}{，}{a}{}{，}
 \renewcommand\NAT@citesuper[3]{\ifNAT@swa%
   \unskip\kern\p@\textsuperscript{\NAT@@open #1\NAT@@close}%
   \if*#3*\else\ (#3)\fi\else #1\fi\endgroup}
