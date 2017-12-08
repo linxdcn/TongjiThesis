@@ -34,13 +34,13 @@
 
 效果二
 
-	`英文引用(Goosens等, \citeyear{companion})，中文引用(沙和尚等, \citeyear{shaheshang})`
+	英文引用(Goosens等, \citeyear{companion})，中文引用(沙和尚等, \citeyear{shaheshang})
 
 英文引用 (Goosens 等, 1994)，中文引用 (沙和尚等, 2005)
 
 效果三
 
-	`Goosens等\citeyearpar{companion}，沙和尚等\citeyearpar{shaheshang}`
+	Goosens等\citeyearpar{companion}，沙和尚等\citeyearpar{shaheshang}
 
 Goosens 等 (1994)，沙和尚等 (2005)
 
