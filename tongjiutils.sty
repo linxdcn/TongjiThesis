@@ -24,6 +24,35 @@ would like to use here]
 % 确定浮动对象的位置，可以使用~H，强制将浮动对象放到这里（可能效果很差）
 \RequirePackage{float}
 
+% 插入代码
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{1,0.18,0.55}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+\lstset{language=Java,
+  numbers=left, 
+  numberstyle=\tiny,
+  escapeinside=``, % 英文分号中可写入中文
+  frame=shadowbox,
+  rulesepcolor= \color{red!20!green!20!blue!20} ,
+  tabsize=4,
+  basicstyle=\ttfamily\footnotesize,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{pgreen},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pred},
+  moredelim=[il][\color{pgrey}]{~~},
+  moredelim=[is][\color{pgrey}]{\%\%}{\%\%},
+  xleftmargin=2em,xrightmargin=2em, aboveskip=1em,
+  framexleftmargin=2em
+}
+
 % 调整目录特殊要求，重定义缩进量
 \usepackage{titletoc} 
 \titlecontents{chapter}[0pt]{\addvspace{0pt}}%

@@ -93,6 +93,15 @@
   % todo: minor fix of CJKnumb
   \def\CJK@null{\kern\CJKnullspace\Unicode{48}{7}\kern\CJKnullspace}
   \defaultfontfeatures{Mapping=tex-text} % after fontspec
+  % \setCJKmainfont{FandolSong}%{Noto Serif CJK SC} 
+  % \setCJKsansfont{FandolHei}%{Noto Sans CJK SC Regular}
+  % \setCJKmonofont{FandolKai}
+  % \setCJKfamilyfont{song}{FandolSong}
+  % \setCJKfamilyfont{hei}{FandolHei}
+  % \setCJKfamilyfont{fs}{FandolFang}
+  % \setCJKfamilyfont{kai}{FandolKai}
+
+  % For Windows users, the default font can be used
   \setCJKmainfont{SimSun}%{Noto Serif CJK SC} 
   \setCJKsansfont{SimHei}%{Noto Sans CJK SC Regular}
   \setCJKmonofont{KaiTi}
@@ -100,8 +109,15 @@
   \setCJKfamilyfont{hei}{SimHei}
   \setCJKfamilyfont{fs}{FangSong}
   \setCJKfamilyfont{kai}{KaiTi}
-  %\setCJKfamilyfont{li}{LiSu} % todo: Windows自带字体，无粗体可用
-  %\setCJKfamilyfont{you}{Adobe Kaiti Std} % 暂未发现需要
+
+  % For Mac users, the default font can be used
+  % \setCJKmainfont{STSong}
+  % \setCJKsansfont{STHeiti}
+  % \setCJKmonofont{STKaiti}
+  % \setCJKfamilyfont{song}{STSong}
+  % \setCJKfamilyfont{hei}{STHeiti}
+  % \setCJKfamilyfont{fs}{STFangsong}
+  % \setCJKfamilyfont{kai}{STKaiti}
 
   \setmainfont{Times New Roman}
   \setsansfont{Arial}
