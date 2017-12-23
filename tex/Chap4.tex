@@ -528,26 +528,182 @@ public class SettReceiver {
 Kafka（Apache，\citeyear{kafka2017}）则是一个分布式、易于扩展的发布/订阅消息系统，可作为消息队列，由于其拥有高吞吐量、内置消息主题、备份、容错等特性，适合在大规模和高强度的系统当中使用；也可作为事件源，在基于事件驱动的系统中，事件被作为消息存储和传递。对于实时数据发布/订阅的核心代码如图~\ref{fig:发布订阅模式核心代码}~所示，其中EnableBinding表示绑定某一接口，Settlement类中定义了沉降数据的发布/订阅的通道名称，发布/订阅消息的方法，通过~output()~方法可获取到对应的消息通道，StreamListener注解则表示订阅Settlement.Input通道，当通道中产生消息是，会触发receive函数对消息进行处理。
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{微服务发现机制}
+\section{盾构隧道微服务发现机制}
 \label{chap:service-discovery}
 
-服务发现机制图
+\subsection{服务发现原理}
+上述设计的基于REST接口的微服务，为了完成一次服务请求，客户端需要知道服务实例所在的网络位置，即IP地址和端口号。本章设计的服役性能相关微服务只有三个，采用人工管理网络位置的方法是可行的，但随着未来平台的不断扩大，微服务的数量可能达到上百个，因此需要一种服务发现机制。
 
-服务注册表，Zookeeper
+服务发现的原理如图~\ref{fig:微服务发现原理图}~所示。客户端首先从服务注册中心中查询微服务的网络位置，从所有可用服务实例中查找所需服务，最后再发出请求。对于微服务，服务实例在启动时将网络位置注册到服务注册中心，并且在服务终止时从注册中心中删除。
 
-\subsection{实现：Zookeeper}
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chap4/microservice-discovery.pdf}
+    \caption{微服务发现原理图}
+    \label{fig:微服务发现原理图}
+\end{figure}
 
+\begin{table}[htb!]
+  \centering
+  \caption{微服务描述属性}
+    \begin{tabular}{?m{7em}<{\centering}"m{7em}<{\centering}"m{20.15em}?}
+    \thickhline
+    属性    & 类型    & \multicolumn{1}{c?}{说明} \bigstrut\\
+    \thinhline
+    id    & String & 服务标识，全局唯一 \bigstrut\\
+    \thinhline
+    name  & String & 服务名称 \bigstrut\\
+    \thinhline
+    description & String & 服务描述，能反映服务的内容 \bigstrut\\
+    \thinhline
+    version & String & 服务版本号，对于同一版本号的更新保证向下兼容 \bigstrut\\
+    \thinhline
+    implements & Array of String & 服务实现的接口列表 \bigstrut\\
+    \thinhline
+    dependencies & Array of Objects & 服务依赖的其他服务，由依赖项数组组成，依赖项包含id和version等 \bigstrut\\
+    \thinhline
+    profiles & String & 服务的运行环境，有product、test和dev，分别代表正式版、测试版和开发版 \bigstrut\\
+    \thickhline
+    \end{tabular}%
+  \label{tab:微服务描述属性}%
+\end{table}%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{微服务部署}
+服务需要对自身进行描述，保证完整性，主要包括服务标识、服务名字、服务简述、服务版本号、提供实现了哪些接口和依赖的其他服务等信息，如表~\ref{tab:微服务描述属性}~所示。服务的描述可采用JSON格式进行存储，并可放置在微服务程序根目录下，或者在程序中标注相应信息。
 
-\subsection{实现：Docker}
+服务发现最重要的是服务注册中心，是包含服务实例网络位置的数据库。服务可通过POST请求注册，新增一个服务实例，服务注册的请求数据如表~\ref{tab:微服务注册请求数据}~所示。通过id+host+port可以定位到一个微服务，当新注册的微服务的id+host+port与已有的一致，会覆盖原微服务实例。
 
+\begin{table}[htb!]
+  \centering
+  \caption{微服务注册请求数据}
+    \begin{tabular}{?m{7em}<{\centering}"m{7em}<{\centering}"m{20.15em}?}
+    \thickhline
+    属性    & 类型    & \multicolumn{1}{c?}{说明} \bigstrut\\
+    \thinhline
+    id    & String & 服务标识 \bigstrut\\
+    \thinhline
+    scheme & String & 访问协议，本文使用的均为http \bigstrut\\
+    \thinhline
+    host  & String & ip地址 \bigstrut\\
+    \thinhline
+    port  & String & 端口号 \bigstrut\\
+    \thinhline
+    uri   & String & 服务的uri \bigstrut\\
+    \thinhline
+    type  & String & 服务的类型，本文使用的均为REST \bigstrut\\
+    \thinhline
+    start & Date  & 服务注册时间 \bigstrut\\
+    \thinhline
+    status & Integer & 服务状态，1为正常，0为异常 \bigstrut\\
+    \thickhline
+    \end{tabular}%
+  \label{tab:微服务注册请求数据}%
+\end{table}%
 
+\subsection{实现：Eureka}
 
+Eureka（Netflix，\citeyear{eureka2017}）是一个服务注册表，为服务实例注册、管理和查询提供了对应的接口，服务实例使用POST请求注册网络位置，成功注册后，在运行期间，服务实例需以一定的频率向注册中心使用PUT方法更新注册表，一来是确保服务更新内容及时反馈给注册中心，二来是确保微服务仍在运行中，最后将使用DELETE从注册中心注销。原理如图~\ref{fig:Eureka微服务注册原理}~所示。
 
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chap4/service-register.pdf}
+    \caption{Eureka微服务注册原理}
+    \label{fig:Eureka微服务注册原理}
+\end{figure}
+
+微服务端的程序改动不大，如图~\ref{fig:Eureka微服务注册代码}~所示，仅需为微服务添加对应的配置文件（图~\ref{fig:Eureka微服务注册配置}），如对服役性能微服务名字取TSI，服务端口为9005，ip地址则在发送请求时由注册中心解析，同时赋值Eureka注册中心的地址。对于服务注册中心，在启动程序添加@EnableEurekaServer注解表明该应用为Eureka服务注册中心（图~\ref{fig:Eureka服务注册中心代码}），在配置文件中将注册中心命名为discovery，端口号为8761（图~\ref{fig:Eureka服务注册中心配置}）。
+
+\begin{figure}[htb!]
+\centering
+\begin{minipage}[t]{1.0\linewidth}
+\begin{lstlisting}
+~~@SpringBootApplication
+~~@RestController
+public class Application {
+
+    public static void main(String[] args) {
+        new SpringApplicationBuilder(Application.class)
+        	.web(true).run(args);
+    }
+
+    %%@RequestMapping%%("/")
+    public String home() {
+        return "TSI Microserivce";
+    }
+}
+\end{lstlisting}
+\end{minipage} 
+\caption{Eureka微服务注册代码}
+\label{fig:Eureka微服务注册代码}
+\end{figure}
+
+\begin{figure}[htb!]
+\centering
+\begin{minipage}[t]{1.0\linewidth}
+\begin{lstlisting}
+spring:
+  application:
+    name: TSI
+server:
+  port: 9005
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: `http://ip-address:8761/eureka/`
+\end{lstlisting}
+\end{minipage} 
+\caption{Eureka微服务注册配置}
+\label{fig:Eureka微服务注册配置}
+\end{figure}
+
+\begin{figure}[htb!]
+\centering
+\begin{minipage}[t]{1.0\linewidth}
+\begin{lstlisting}
+~~@SpringBootApplication
+~~@EnableEurekaServer
+public class Application {
+
+    public static void main(String[] args) {
+        new SpringApplicationBuilder(Application.class)
+        	.web(true).run(args);
+    }
+}
+\end{lstlisting}
+\end{minipage} 
+\caption{Eureka服务注册中心代码}
+\label{fig:Eureka服务注册中心代码}
+\end{figure}
+
+\begin{figure}[htb!]
+\centering
+\begin{minipage}[t]{1.0\linewidth}
+\begin{lstlisting}
+spring:
+  application:
+    name: discovery
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: ip-address
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: `http://ip-address:8761/eureka/`
+\end{lstlisting}
+\end{minipage} 
+\caption{Eureka服务注册中心配置}
+\label{fig:Eureka服务注册中心配置}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{本章小结}
 
-正文
+为了改进传统单体式应用模块复杂、体量庞大、可扩展性差等问题，遵循单一功能、独立部署和轻量级通信的原则，本章研究并设计了盾构隧道服役性能相关的微服务架构关键技术，包括：
+
+（1）制定了盾构隧道服役性能相关服务，即数据服务、服役性能分析服务和有限元分析服务的请求和响应格式标准，并基于Spring Cloud Gateway实现了接口网关，对所有微服务进行管理。
+
+（2）结合盾构隧道服役性能相关服务的通信特点，研究适用于各个微服务的通信方法，包括基于REST的请求/响应以及基于AMQP的请求/异步响应和订阅/发布通信模式，并借助Spring Boot和Kafka实现上述通信模式。
+
+（3）针对大量动态变化微服务的管理，研究服务发现的机制，采用注册/持续更新/注销的模型对微服务进行管理，并利用Eureka实现微服务发现的框架。
