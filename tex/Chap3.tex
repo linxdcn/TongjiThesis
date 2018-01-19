@@ -227,7 +227,7 @@ MA(q)模型，从自相关函数ACF来看，在移动平均方程的基础上也
 
 \begin{figure}[htb!]
     \centering
-    \includegraphics[width=0.5\textwidth]{chap3/time-series-process.pdf}
+    \includegraphics[width=0.6\textwidth]{chap3/time-series-process.pdf}
     \caption{ARMA时间序列模型建模流程图}
     \label{fig:ARMA时间序列模型建模流程图}
 \end{figure}
@@ -641,7 +641,7 @@ VAR/SVAR模型的建立过程跟ARMA模型类似，可以分为VAR模型建立�
 
 \begin{figure}[htb!]
     \centering
-    \includegraphics[width=0.5\textwidth]{chap3/var-process.pdf}
+    \includegraphics[width=0.52\textwidth]{chap3/var-process.pdf}
     \caption{VAR/SVAR模型建模流程图}
     \label{fig:VARSVAR模型建模流程图}
 \end{figure}
@@ -783,9 +783,9 @@ VAR/SVAR模型的建立过程跟ARMA模型类似，可以分为VAR模型建立�
 式中：$\varepsilon _t$是VAR模型的扰动项；${u}_{1t}$，${u}_{2t}$，${u}_{3t}$表示作用在$s_1$，$s_2$，$s_3$上的结构式冲击；$a_{ij}$表示变量之间的相互作用。该AB型的SVAR模型有3个变量，对于$A,B$矩阵需施加$2k^2-k(k+1)/2=12$个约束，$B$取单位矩阵，$A$取对角线元素为1，相当于施加了12个约束，结合沉降数据实际情况，另外施加$a_{12}=a_{21}$，$a_{13}=a_{31}$，$a_{23}=a_{32}$三个约束，即变量相互之间的作用是一样的。参数估计结果为
 \begin{equation}
 	\left( \begin{matrix}
-   1.00 & -0.67 & -0.49  \\
-   -0.67 & 1.00 & -0.52  \\
-   -0.49 & -0.52 & 1.00  \\
+   1.00 & 0.67 & 0.49  \\
+   0.67 & 1.00 & 0.52  \\
+   0.49 & 0.52 & 1.00  \\
 \end{matrix} \right)\left( \begin{matrix}
    {{\varepsilon }_{1}}  \\
    {{\varepsilon }_{2}}  \\

@@ -648,9 +648,9 @@ Shen等（\citeyear{shen2014long}）提出差异沉降也是影响隧道服役�
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{盾构隧道服役性变权修正}
+\section{盾构隧道服役性指标全寿命期修正}
 
-公式~\ref{tsi}~给出了TSI与评估指标之间的线性关系，每个指标的权重系数均为固定常数。对于实际盾构隧道，若有一指标值较大，则该指标的进一步劣化对服役性能的影响变得十分重要，具有明显的“木桶效应”。常数权重则不能反映这一现象，对指标灵敏性、动态环境的适应性低。
+公式~\ref{tsi}~给出了TSI与评估指标之间的线性关系，但样本的隧道区间运营时间均在20年以内，对于20年以后的隧道服役性能，公式~\ref{tsi}~并未覆盖。对于20年后的隧道服役性能指标，有两种解决方法（1）重新选择20年后的隧道样本进行专家评估和拟合；（2）考虑指标的不断劣化给服役性能带来的影响。本节采用动态变权的思想，考虑TSI公式在隧道全寿命期应用的修正。
 
 动态变权首先需要考虑指标的劣化程度。以盾构隧道的累积沉降为例，在相同时间内新增相同的沉降，对累积沉降已经较大的隧道的影响要比累积沉降相对较小的隧道，数学上称这种特性为悲观性（李蓉，\citeyear{李蓉2007基于层次分析法的桥梁健康状态模糊综合评估方法的研究及其应用}），其数学公式为
 \begin{equation}
@@ -790,6 +790,78 @@ Cheng等（\citeyear{cheng1999evaluating}）引入变权函数，采用变权权
     \caption{常权TSI与变权TSI曲线比较}
     \label{fig:常权TSI与变权TSI曲线比较}
 \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{服役性能指标的应用}
+
+以上海地铁12号线天潼路站至国客中心站区间为例，说明TSI公式的应用。该区间长1449.6米，环宽1.2米，共计1208环，平面图如图~\ref{fig:天潼路-国客中心区间平面图}~所示。通过监测与人工检查方式获得该隧道区间沉降数据如图~\ref{fig:天潼路-国客中心区间监测数据}a~所示，相对沉降大小在0-9mm范围，收敛数据如图~\ref{fig:天潼路-国客中心区间监测数据}b~所示，收敛变形大小在0-10‰D范围。
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=1.0\textwidth]{chap2/subway1.png}
+    \caption{天潼路-国客中心区间平面图}
+    \label{fig:天潼路-国客中心区间平面图}
+\end{figure}
+
+\begin{figure}[htb!] 
+    \centering 
+    \begin{tabular}{c} 
+        \includegraphics[width=1.0\textwidth]{chap2/subway2.png} \\ 
+        (a)~沉降数据 \\
+        \includegraphics[width=1.0\textwidth]{chap2/subway3.png} \\ 
+        (b)~收敛数据 \\
+    \end{tabular}
+    \caption{天潼路-国客中心区间监测数据} 
+    \label{fig:天潼路-国客中心区间监测数据} 
+\end{figure}
+
+区间总共有19处渗漏水，其中最大渗漏面积发生在第599环，为1.6$m^2$；总共有23处裂缝，其中最大裂缝发生在第852环，为1$m$长；以及有12处剥落,其中最大剥落发生在第102环，为0.1$m^2$。区间的病害展开图如图~\ref{fig:天潼路-国客中心区间病害数据}~所示。
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=1.0\textwidth]{chap2/subway4.png}
+    \caption{天潼路-国客中心区间病害数据}
+    \label{fig:天潼路-国客中心区间病害数据}
+\end{figure}
+
+将隧道以200环为单位划分，计算各指标的数值大小，将结果代入式~\ref{tsi}~得，第1-200环TSI为
+\begin{align}
+  & TSI=0.77+0.16\sqrt{{{s}_{ave}}}+0.01{{s}_{diff\_ave}}+0.09{{c}_{ave}} \nonumber \\ 
+ & \quad \quad \quad +0.08{{d}_{l}}+0.05{{d}_{c}}+0.50{{d}_{s}} \nonumber \\ 
+ & \quad \quad =0.77+0.16\times \sqrt{8.479}+0.01\times 20.064+0.09\times 5.325 \nonumber \\ 
+ & \quad \quad \quad +0.08\times 3.4+0.05\times 3.852+0.5\times 0.1 \nonumber \\ 
+ & \quad \quad =2.4 \nonumber
+\end{align}
+以此类推，可计算整个隧道区间的TSI值如图~\ref{fig:天潼路-国客中心区间服役性能结果}~所示。由图可知，该区间的状态在1.8-2.4之间，接近于“好（2.0）”状态，相对应的维护养护措施可参考表~\ref{tab:养护维护标准}~所述。
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=1.0\textwidth]{chap2/subway5.png}
+    \caption{天潼路-国客中心区间服役性能结果}
+    \label{fig:天潼路-国客中心区间服役性能结果}
+\end{figure}
+
+\begin{table}[htb!]
+  \centering
+  \caption{养护维护标准}
+    \begin{tabular}{?m{8em}<{\centering}"m{8em}<{\centering}"m{16em}?}
+    \thickhline
+    状态等级 & 状态    & \multicolumn{1}{c?}{措施} \bigstrut\\
+    \thinhline
+    1     & 很好    & 无 \bigstrut\\
+    \thinhline
+    2     & 好     & 在下次检查中重点调查 \bigstrut\\
+    \thinhline
+    3     & 一般    & 尽快实施特殊监测，依据监测结果确定是否采取维修措施 \bigstrut\\
+    \thinhline
+    4     & 差     & 按需要限制使用，尽快采取维修措施，维修完成前实施特殊监测 \bigstrut\\
+    \thinhline
+    5     & 很差    & 立即限制使用，进行维修、更换或重建，同时实施特殊监测 \bigstrut\\
+    \thickhline
+    \end{tabular}%
+  \label{tab:养护维护标准}%
+\end{table}%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{本章小结}
