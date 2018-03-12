@@ -93,22 +93,22 @@
   % todo: minor fix of CJKnumb
   \def\CJK@null{\kern\CJKnullspace\Unicode{48}{7}\kern\CJKnullspace}
   \defaultfontfeatures{Mapping=tex-text} % after fontspec
-  \setCJKmainfont{FandolSong}%{Noto Serif CJK SC} 
-  \setCJKsansfont{FandolHei}%{Noto Sans CJK SC Regular}
-  \setCJKmonofont{FandolKai}
-  \setCJKfamilyfont{song}{FandolSong}
-  \setCJKfamilyfont{hei}{FandolHei}
-  \setCJKfamilyfont{fs}{FandolFang}
-  \setCJKfamilyfont{kai}{FandolKai}
+  % \setCJKmainfont{FandolSong}%{Noto Serif CJK SC} 
+  % \setCJKsansfont{FandolHei}%{Noto Sans CJK SC Regular}
+  % \setCJKmonofont{FandolKai}
+  % \setCJKfamilyfont{song}{FandolSong}
+  % \setCJKfamilyfont{hei}{FandolHei}
+  % \setCJKfamilyfont{fs}{FandolFang}
+  % \setCJKfamilyfont{kai}{FandolKai}
 
   % For Windows users, the default font can be used
-  % \setCJKmainfont{SimSun}%{Noto Serif CJK SC} 
-  % \setCJKsansfont{SimHei}%{Noto Sans CJK SC Regular}
-  % \setCJKmonofont{KaiTi}
-  % \setCJKfamilyfont{song}{SimSun}
-  % \setCJKfamilyfont{hei}{SimHei}
-  % \setCJKfamilyfont{fs}{FangSong}
-  % \setCJKfamilyfont{kai}{KaiTi}
+  \setCJKmainfont{SimSun}%{Noto Serif CJK SC} 
+  \setCJKsansfont{SimHei}%{Noto Sans CJK SC Regular}
+  \setCJKmonofont{KaiTi}
+  \setCJKfamilyfont{song}{SimSun}
+  \setCJKfamilyfont{hei}{SimHei}
+  \setCJKfamilyfont{fs}{FangSong}
+  \setCJKfamilyfont{kai}{KaiTi}
   
   % For Mac users, the default font can be used
   % \setCJKmainfont{STSong}
