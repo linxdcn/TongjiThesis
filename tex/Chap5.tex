@@ -197,11 +197,42 @@ iS3 Desktop的信息模型可由数据微服务获取，对于地质勘察信息
     \label{fig:盾构隧道服役性能分析}
 \end{figure}
 
-
 \subsection{iS3网页端}
 
+对于iS3-Web应用，除了采用上述的盾构隧道相关微服务分析功能以外，其GIS模型也将以服务的形式提供。首先盾构隧道工程相关的所有数据均存储在PostGIS（OSGeo，\citeyear{postgis2018}）数据库中，PostGIS是一款地理数据库，具备普通关系型数据库的功能，且可存储带有坐标系的二维图形信息，采用GeoServer（OSGeo，\citeyear{geoserver2018}）服务器读取数据库中的信息，并提供二维数据服务，如图~\ref{fig:GeoServer服务器}~所示。
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{chap5/geoserver.png}
+    \caption{GeoServer服务器}
+    \label{fig:GeoServer服务器}
+\end{figure}
+
+网页端语言自身支持HTTP请求方式，通过浏览器即可向微服务发送盾构隧道服役性能计算的请求，如图~\ref{fig:iS3Web请求服役性能分析微服务}~。目前iS3 Web仅支持数据服务查询和过滤等基础功能，如图~\ref{fig:iS3Web数据请求与编辑功能}~，采用数据库的形式存储属性信息和几何信息更便于数据的修改，修改的几何图形则由GeoServer及时渲染实时更新。同桌面端一样，网页端也可调用不同的微服务完成各种复杂分析功能，并在界面中可视化结果。
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{chap5/iS3-Web.png}
+    \caption{iS3 Web请求服役性能分析微服务}
+    \label{fig:iS3Web请求服役性能分析微服务}
+\end{figure}
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{chap5/iS3Web-query.png}
+    \caption{iS3 Web数据请求与编辑功能}
+    \label{fig:iS3Web数据请求与编辑功能}
+\end{figure}
+
+由上述的iS3 Desktop和iS3 Web两个客户端的应用可知，第~\ref{chap:service}~章的微服务架构能很好的为不同应用提供服务能力，应用层的开发主要关注请求数据的准备和响应数据的解析可视化，调用统一的微服务在分析功能更新升级时更加便捷。另外，微服务由于采用服务发现的机制，信息分析功能可快速的从不同的机器接入微服务系统，分析功能具备良好的扩展性。
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{本章小结}
 
-正文
+本章以上海轨道交通12号线天潼路-国际客运中心站区间为工程案例，以盾构隧道服役性能微服务为架构，描述了本文内容在工程中的应用，包括：
+
+（1）对工程案例进行简单描述，并介绍工程的基础平台：基础设施智慧服务系统（iS3），其是全寿命数据采集、处理、表达、分析的一体化决策服务系统，包含了基础层、数据层、服务层、应用层和用户层，本文主要工作在于服务层和应用层。
+
+（2）实现了盾构隧道服役性能评估相关的微服务，有服务发现中心和各微服务的API网关，列举浏览器、命令行和第三方客户端等的微服务请求方式，最后展示了数据服务、TSI服务和有限元服务的请求结果。
+
+（3）在微服务基础上，开发iS3桌面端和网页端应用，介绍应用借助服务中心实现的对于盾构隧道地质勘察、结构设计、运营监测和养护维护各全寿命阶段的管理。
