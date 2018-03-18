@@ -147,7 +147,7 @@
 \cline{2-7}          & 注浆量   & 差比    & <0.05 & 0.05-0.1 & 0.1-0.2 & >0.2 \bigstrut\\
 \cline{2-7}          & 注浆压力  & 差比    & 0-0.1 & 0.1-0.2 & 0.2-0.4 & >0.4 \bigstrut\\
     \hline
-    \multicolumn{1}{?c"}{\multirow{10}[20]{*}{材料}} & 混凝土强度 & 差比    & 0-0.1 & 0.1-0.33 & 0.33-0.5 & >0.5 \bigstrut\\
+    \multicolumn{1}{?c"}{\multirow{10}[20]{*}[40pt]{材料}} & 混凝土强度 & 差比    & 0-0.1 & 0.1-0.33 & 0.33-0.5 & >0.5 \bigstrut\\
 \cline{2-7}          & 混凝土渗透性 & \multicolumn{1}{c"}{} & \multicolumn{1}{c"}{} & \multicolumn{1}{c"}{} & \multicolumn{1}{c"}{} & \multicolumn{1}{c?}{} \bigstrut\\
 \cline{2-7}          & 混凝土碳化 & \multicolumn{1}{c"}{} & \multicolumn{1}{c"}{} & \multicolumn{1}{c"}{} & \multicolumn{1}{c"}{} & \multicolumn{1}{c?}{} \bigstrut\\
 \cline{2-7}          & 混凝土厚度 & 差比    & 0-0.1 & 0.1-0.33 & 0.33-0.5 & >0.5 \bigstrut\\
@@ -243,7 +243,7 @@ Shen等（\citeyear{shen2014long}）提出差异沉降也是影响隧道服役�
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{chap2/lining-geom.png}
-    \caption{衬砌管片横向收敛与接缝张开几何关系图}
+    \caption{衬砌管片横向收敛与接缝张开几何关系图（王如路和张冬梅，\citeyear{王如路2013超载作用下软土盾构隧道横向变形机理及控制指标研究}）}
     \label{fig:衬砌管片横向收敛与接缝张开几何关系图}
 \end{figure}
 
@@ -252,7 +252,7 @@ Shen等（\citeyear{shen2014long}）提出差异沉降也是影响隧道服役�
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.9\textwidth]{chap2/sett-shear.png}
-    \caption{弹性地基梁纵向剪切平衡分析图}
+    \caption{弹性地基梁纵向剪切平衡分析图（廖少明等，\citeyear{廖少明2005隧道纵向剪切传递效应及其一维解析}）}
     \label{fig:弹性地基梁纵向剪切平衡分析图}
 \end{figure}
 
@@ -477,7 +477,7 @@ Shen等（\citeyear{shen2014long}）提出差异沉降也是影响隧道服役�
     \label{fig:TSR与观测变量关系图2} 
 \end{figure}
 
-多元回归方法一般都是多元线性回归分析，对于与因变量成非线性关系的自变量需通过函数变化线性化。图~\ref{fig:TSR与观测变量关系图}~展示了各个观测变量与TSR的散点图，分别采用线性函数、对数函数和平方根函数对观测变量进行线性化处理，采用确定系数$R^2$来反映回归结果的拟合优度。图~\ref{fig:TSR与观测变量关系图}a~线性函数、对数函数和平方根函数的拟合结果分别为0.67、0.74和0.75。故在多元回归时将${sett}_{a}$转换为$\sqrt{sett_a}$。由图~\ref{fig:TSR与观测变量关系图}b~和图~\ref{fig:TSR与观测变量关系图}c~可知，线性函数对$set{{t}_{d\_a}}$和${cov}_{a}$的拟合度最高，分别为0.40和0.49。但是对于${d}_{l}$、$d_s$和$d_c$三个观测变量，从图~\ref{fig:TSR与观测变量关系图2}~中可看出与TSR不存在明显的函数关系，故无需对其作线性变化。
+多元回归方法一般都是多元线性回归分析，对于与因变量成非线性关系的自变量需通过函数变换线性化。图~\ref{fig:TSR与观测变量关系图}~展示了各个观测变量与TSR的散点图，分别采用线性函数、对数函数和平方根函数对观测变量进行线性化处理，采用确定系数$R^2$来反映回归结果的拟合优度。图~\ref{fig:TSR与观测变量关系图}a~线性函数、对数函数和平方根函数的拟合结果分别为0.67、0.74和0.75。故在多元回归时将${sett}_{a}$转换为$\sqrt{sett_a}$。由图~\ref{fig:TSR与观测变量关系图}b~和图~\ref{fig:TSR与观测变量关系图}c~可知，线性函数对$set{{t}_{d\_a}}$和${cov}_{a}$的拟合度最高，分别为0.40和0.49。但是对于${d}_{l}$、$d_s$和$d_c$三个观测变量，从图~\ref{fig:TSR与观测变量关系图2}~中可看出与TSR不存在明显的函数关系，故无需对其作线性变化。
 
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 \subsection{偏最小二乘多元线性回归方法}
@@ -597,7 +597,7 @@ Shen等（\citeyear{shen2014long}）提出差异沉降也是影响隧道服役�
     TSI={{A}_{1}}\sqrt{set{{t}_{a}}}+{{A}_{2}}set{{t}_{d\_a}}+{{B}_{1}}{{\operatorname{cov}}_{a}}+{{C}_{1}}{{d}_{l}}+{{C}_{2}}{{d}_{c}}+{{C}_{3}}{{d}_{s}}+C \\ 
     TSI=TSI+{{F}_{k}}
 \end{gather}
-式中：$A_1$，$A_2$，$B_1$，$C_1$，$C_2$，$C_3$和$C$均为待评估的系数；$F_k$为回归模型不能解释的残差。由于隧道变形和病害的增多，必然造成隧道服役性能的降低，故在物理意义上应为负数。
+式中：$A_1$，$A_2$，$B_1$，$C_1$，$C_2$，$C_3$和$C$均为待评估的系数；$F_k$为回归模型不能解释的残差。由于隧道变形和病害的增多，必然造成隧道服役性能的降低，对应TSI值应变大，所以上述的评估系数应为正数。
 
 根据式~\ref{equ:regress1}-\ref{equ:regress-index2}~可计算得TSI的标准化公式
 \begin{align}
@@ -650,7 +650,9 @@ Shen等（\citeyear{shen2014long}）提出差异沉降也是影响隧道服役�
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{盾构隧道服役性指标全寿命期修正}
 
-公式~\ref{tsi}~给出了TSI与评估指标之间的线性关系，但样本的隧道区间运营时间均在20年以内，对于20年以后的隧道服役性能，公式~\ref{tsi}~并未覆盖。对于20年后的隧道服役性能指标，有两种解决方法（1）重新选择20年后的隧道样本进行专家评估和拟合；（2）考虑指标的不断劣化给服役性能带来的影响。本节采用动态变权的思想，考虑TSI公式在隧道全寿命期应用的修正。
+公式~\ref{tsi}~给出了TSI与评估指标之间的线性关系，受限于当前隧道样本数量，TSI公式存在以下两个问题：（1）目前隧道区间样本的运营时间均在20年以内，对比100年的设计寿命，隧道仍处于早期阶段，对于20年以后的隧道服役性能，公式~\ref{tsi}~并不能模拟；（2）TSI公式严格上只适用于与样本类似的隧道区间，即统计指标如表~\ref{tab:上海地铁观测变量统计信息}~，若因外部因素导致评估指标远离统计范围，TSI公式也将不适用。
+
+因此，本文研究了指标的劣化对服役性能的影响。本节采用动态变权的思想，对TSI公式在隧道全寿命期应用进行修正。动态变权函数应具备如下特点：（1）当各评估在表~\ref{tab:上海地铁观测变量统计信息}~统计范围内时，变权计算结果应与常权计算结果相近；（2）指标劣化程度越大，权重应越大，且权重增加的速率应正比于指标劣化程度，凸显指标对服役性能的影响；（3）当指标超过理论的极限值后，服役性能指标应能降至最低等级。建议在实际应用中，条件允许情况下均使用修正后的公式，未修正的TSI公式可用于简单估算。
 
 动态变权首先需要考虑指标的劣化程度。以盾构隧道的累积沉降为例，在相同时间内新增相同的沉降，对累积沉降已经较大的隧道的影响要比累积沉降相对较小的隧道，数学上称这种特性为悲观性（李蓉，\citeyear{李蓉2007基于层次分析法的桥梁健康状态模糊综合评估方法的研究及其应用}），其数学公式为
 \begin{equation}
@@ -659,7 +661,7 @@ Shen等（\citeyear{shen2014long}）提出差异沉降也是影响隧道服役�
    0\quad \quad \quad \quad \quad \quad \quad v>{{v}_{\max }}  \\
 \end{matrix} \right.
 \end{equation}
-式中：$g$为指标健康度，$g$越小代表指标越严重；$v$为指标的值；$v_min$为指标的下限值；$v_max$为指标的上限值。曲线如图~\ref{fig:悲观型曲线图}~所示。
+式中：$g$为指标健康度，$g$越小代表指标越严重；$v$为指标的值；$v_{min}$为指标的下限值；$v_{max}$为指标的上限值。曲线如图~\ref{fig:悲观型曲线图}~所示。
 
 \begin{figure}[htb!]
     \centering
@@ -721,78 +723,10 @@ Cheng等（\citeyear{cheng1999evaluating}）引入变权函数，采用变权权
     \label{fig:分段变权函数与幂函数变权函数比较}
 \end{figure}
 
-下面以具体数据为例，说明变权TSI计算过程。首先应确定各指标的允许最大值，采用朱宝林（\citeyear{朱宝林2014运营地铁盾构隧道状态评估及预测方法研究}）对隧道病害分级的建议值，本文对六个评估指标的极限值取值如表~\ref{tab:评估指标允许最小和最大值}~所示。假设对于某段地铁区间的指标数值如表~\ref{tab:TSI变权函数计算过程}~第2列所示，根据公式~\ref{tsi-std}~可知TSI标准化公式的指标系数如第3列所示，根据系数计算各指标的权重，结果为第4列数据，根据指标数值计算指标的健康度，如第5列，根据公式~\ref{equ:分段状态变权函数}~得到变权函数值，如第6列，最后重新计算各指标的权重和标准化系数，分别如第7、8列所示。
-
-根据公式~\ref{equ:setta标准化}-\ref{equ:ds标准化}~可计算得到各指标的标准化值分别为：-0.48、-0.28、-1.0、-0.04、0和0，根据更新后的指标系数，可计算标准化后的TSI
-\begin{align}
-  & TS{I}'=0.60\sqrt{set{{{{t}'}}_{a}}}+0.17set{{{{t}'}}_{d\_a}}+0.24\operatorname{co}{{{{v}'}}_{a}} \nonumber \\ 
- & \quad \quad \quad +0.18{{{{d}'}}_{l}}+0.06{{d}_{c}}^{\prime }+0.03{{{{d}'}}_{s}} \nonumber \\ 
- & \quad \quad \; \text{=}\text{0}\text{.60}\times (-0.48)+0.17\times (-0.28)+0.24\times (-1.0) \nonumber \\ 
- & \quad \quad \quad +0.18\times (-0.04)+0.06\times 0.0+0.03\times 0.0 \nonumber \\ 
- & \quad \quad =-0.5828 \nonumber
-\end{align}
-再根据公式~\ref{equ:tsi标准化}~可计算得变权后的TSI值
-\begin{equation}
-    TSI=TS{I}'\times 0.8+2.4=1.9 \nonumber
-\end{equation}
-
-\begin{table}[htb!]
-  \centering
-  \caption{评估指标允许最小和最大值}
-    \begin{tabular}{?m{7em}<{\centering}"m{7em}<{\centering}"m{7em}<{\centering}?}
-    \thickhline
-    $v$     & \multicolumn{1}{c"}{$v_{min}$} & \multicolumn{1}{m{7em}<{\centering}?}{$v_{max}$} \bigstrut\\
-    \thinhline
-    $\sqrt{{sett}_{a}}$ & 0     & \multicolumn{1}{c?}{$\sqrt{60}$~$mm$} \bigstrut\\
-    \thinhline
-    ${sett}_{d\_a}$ & 0     & \multicolumn{1}{c?}{30~$mm/100m$} \bigstrut\\
-    \thinhline
-    ${cov}_{a}$   & 0     & \multicolumn{1}{c?}{12~$‰D$} \bigstrut\\
-    \thinhline
-    $d_l$    & 0     & \multicolumn{1}{c?}{1~$m^2$} \bigstrut\\
-    \thinhline
-    $d_c$    & 0     & \multicolumn{1}{c?}{0.5~$m$} \bigstrut\\
-    \thinhline
-    $d_s$    & 0     & \multicolumn{1}{c?}{0.5~$m^2$} \bigstrut\\
-    \thickhline
-    \end{tabular}%
-  \label{tab:评估指标允许最小和最大值}%
-\end{table}%
-
-\begin{table}[htb!]
-  \centering
-  \caption{TSI变权函数计算过程}
-    \begin{tabular}{?c"c"m{4em}<{\centering}"c"c"c"c"c?}
-    \thickhline
-    指标    & 数值  & 标准化方程系数 & 初始权重  & 健康度   & 变权函数 & 变权权重  & 变权系数 \bigstrut\\
-    \thinhline
-    $\sqrt{{sett}_{a}}$ & 3.7   & -0.62 & 0.48  & 0.98  & 1.00  & 0.47  & -0.60  \bigstrut\\
-    \thinhline
-    ${sett}_{d\_a}$ & 13.5  & -0.13 & 0.10  & 0.74  & 1.31  & 0.13  & -0.17  \bigstrut\\
-    \thinhline
-    ${cov}_{a}$   & 3.9   & -0.25 & 0.20  & 0.83  & 1.00  & 0.19  & -0.24  \bigstrut\\
-    \thinhline
-    $d_l$    & 0.35  & -0.19 & 0.15  & 0.82  & 1.00  & 0.14  & -0.18  \bigstrut\\
-    \thinhline
-    $d_c$    & 0     & -0.06 & 0.05  & 1.00  & 1.00  & 0.05  & -0.06  \bigstrut\\
-    \thinhline
-    $d_s$    & 0     & -0.03 & 0.02  & 1.00  & 1.00  & 0.02  & -0.03  \bigstrut\\
-    \thickhline
-    \end{tabular}%
-  \label{tab:TSI变权函数计算过程}%
-\end{table}%
-
-为了比较变权修正的TSI和常权TSI，在上述评估指标大小数值保持不变的情况下，增加平均收敛变形率，比较两种计算方法在某一指标不断劣化下的服役性能计算值。结果如图~\ref{fig:常权TSI与变权TSI曲线比较}~所示。对于常权TSI，不管指标劣化程度，单个指标的增加对TSI的影响都是一致的，对于变权TSI，随着指标的增加，在指标数值越大，其对TSI的影响越大，更符合实际情况。
-
-\begin{figure}[htb!]
-    \centering
-    \includegraphics[width=0.7\textwidth]{chap2/const-change.eps}
-    \caption{常权TSI与变权TSI曲线比较}
-    \label{fig:常权TSI与变权TSI曲线比较}
-\end{figure}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{服役性能指标的应用}
+
+\subsection{常权TSI应用}
 
 以上海地铁12号线天潼路站至国客中心站区间为例，说明TSI公式的应用。该区间长1449.6米，环宽1.2米，共计1208环，平面图如图~\ref{fig:天潼路-国客中心区间平面图}~所示。通过监测与人工检查方式获得该隧道区间沉降数据如图~\ref{fig:天潼路-国客中心区间监测数据}a~所示，相对沉降大小在0-9mm范围，收敛数据如图~\ref{fig:天潼路-国客中心区间监测数据}b~所示，收敛变形大小在0-10‰D范围。
 
@@ -861,6 +795,79 @@ Cheng等（\citeyear{cheng1999evaluating}）引入变权函数，采用变权权
     \end{tabular}%
   \label{tab:养护维护标准}%
 \end{table}%
+
+\subsection{变权TSI应用}
+
+继续以12号线数据为例，说明变权TSI计算过程。首先应确定各指标的允许最大值，采用朱宝林（\citeyear{朱宝林2014运营地铁盾构隧道状态评估及预测方法研究}）对隧道病害分级的建议值，本文对六个评估指标的极限值取值如表~\ref{tab:评估指标允许最小和最大值}~所示。仍以图~\ref{fig:天潼路-国客中心区间服役性能结果}~中常权TSI为2.4的第1-200环区段隧道为例，其指标数值如表~\ref{tab:TSI变权函数计算过程}~第2列所示，根据公式~\ref{tsi-std}~可知TSI标准化公式的指标系数如第3列所示，根据系数计算各指标的权重，结果为第4列数据，根据指标数值计算指标的健康度，如第5列，根据公式~\ref{equ:分段状态变权函数}~得到变权函数值，如第6列，最后重新计算各指标的权重和标准化系数，分别如第7、8列所示。
+
+根据公式~\ref{equ:setta标准化}-\ref{equ:ds标准化}~可计算得到各指标的标准化值分别为：-0.74、0.21、-0.35、1.17、3.72和1.00，根据更新后的指标系数，可计算标准化后的TSI
+\begin{align}
+  & TS{I}'=0.31\sqrt{set{{{{t}'}}_{a}}}+0.23set{{{{t}'}}_{d\_a}}+0.16\operatorname{co}{{{{v}'}}_{a}} \nonumber \\ 
+ & \quad \quad \quad +0.36{{{{d}'}}_{l}}+0.20{{d}_{c}}^{\prime }+0.01{{{{d}'}}_{s}} \nonumber \\ 
+ & \quad \quad =0.31\times (-0.74)+0.23\times 0.21+0.16\times (-0.35) \nonumber \\ 
+ & \quad \quad \quad +0.36\times 1.17+0.20\times 3.72+0.01\times 1.0 \nonumber \\ 
+ & \quad \quad =0.9 \nonumber
+\end{align}
+再根据公式~\ref{equ:tsi标准化}~可计算得变权后的TSI值
+\begin{equation}
+    TSI=TS{I}'\times 0.8+2.4=3.1 \nonumber
+\end{equation}
+较常权TSI计算结果2.4增加了0.7，变权TSI计算结果为3.1，评估状态在“一般”级别，主要原因是该区段的差异沉降、渗漏水和裂缝较大，健康度的计算结果在0.5以下，对应指标的权重增加，反映指标对服役性能影响增大。
+
+\begin{table}[htb!]
+  \centering
+  \caption{评估指标允许最小和最大值}
+    \begin{tabular}{?m{7em}<{\centering}"m{7em}<{\centering}"m{7em}<{\centering}?}
+    \thickhline
+    $v$     & \multicolumn{1}{c"}{$v_{min}$} & \multicolumn{1}{m{7em}<{\centering}?}{$v_{max}$} \bigstrut\\
+    \thinhline
+    $\sqrt{{sett}_{a}}$ & 0     & \multicolumn{1}{c?}{$\sqrt{60}$~$mm$} \bigstrut\\
+    \thinhline
+    ${sett}_{d\_a}$ & 0     & \multicolumn{1}{c?}{30~$mm/100m$} \bigstrut\\
+    \thinhline
+    ${cov}_{a}$   & 0     & \multicolumn{1}{c?}{12~$‰D$} \bigstrut\\
+    \thinhline
+    $d_l$    & 0     & \multicolumn{1}{c?}{5~$m^2$} \bigstrut\\
+    \thinhline
+    $d_c$    & 0     & \multicolumn{1}{c?}{5~$m$} \bigstrut\\
+    \thinhline
+    $d_s$    & 0     & \multicolumn{1}{c?}{1.5~$m^2$} \bigstrut\\
+    \thickhline
+    \end{tabular}%
+  \label{tab:评估指标允许最小和最大值}%
+\end{table}%
+
+\begin{table}[htb!]
+  \centering
+  \caption{TSI变权函数计算过程}
+    \begin{tabular}{?c"c"m{4em}<{\centering}"c"c"c"c"c?}
+    \thickhline
+    指标    & 数值  & 标准化方程系数 & 初始权重  & 健康度   & 变权函数 & 变权权重  & 变权系数 \bigstrut\\
+    \thinhline
+    $\sqrt{{sett}_{a}}$ & 2.91   & 0.62 & 0.48  & 0.98  & 1.00  & 0.24  & 0.31  \bigstrut\\
+    \thinhline
+    ${sett}_{d\_a}$ & 20.01  & 0.13 & 0.10  & 0.52  & 3.58  & 0.18  & 0.23  \bigstrut\\
+    \thinhline
+    ${cov}_{a}$   & 5.32   & 0.25 & 0.20  & 0.75  & 1.28  & 0.13  & 0.16  \bigstrut\\
+    \thinhline
+    $d_l$    & 3.4  & 0.19 & 0.15  & 0.51  & 3.84  & 0.28  & 0.36  \bigstrut\\
+    \thinhline
+    $d_c$    & 3.8     & 0.06 & 0.05  & 0.39  & 6.61  & 0.15  & 0.20  \bigstrut\\
+    \thinhline
+    $d_s$    & 0.1     & 0.03 & 0.02  & 0.97  & 1.00  & 0.01  & 0.01  \bigstrut\\
+    \thickhline
+    \end{tabular}%
+  \label{tab:TSI变权函数计算过程}%
+\end{table}%
+
+为了更深入比较变权修正的TSI和常权TSI，在上述评估指标大小数值保持不变的情况下，假设平均收敛变形率持续增加，比较两种计算方法在某一指标不断劣化下的服役性能计算值。结果如图~\ref{fig:常权TSI与变权TSI曲线比较}~所示。对于常权TSI，不管指标劣化程度，单个指标的增加对TSI的影响都是一致的，对于变权TSI，随着指标的增加，在指标数值越大，其对TSI的影响越大，更符合实际情况。
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chap2/const-change.eps}
+    \caption{常权TSI与变权TSI曲线比较}
+    \label{fig:常权TSI与变权TSI曲线比较}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
