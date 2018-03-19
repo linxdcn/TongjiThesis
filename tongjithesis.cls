@@ -741,12 +741,12 @@
   \phantomsection
   \pdfbookmark[-1]{\tongji@ctitle}{ctitle}
   \normalsize%
-  \begin{titlepage}
-    \tongji@first@titlepage
-    \cleardoublepage\engcover
-    \cleardoublepage\tongji@authorization@mk
-    \cleardoublepage\tongji@declareshortname@mk
-  \end{titlepage}
+  % \begin{titlepage}
+  %   \tongji@first@titlepage
+  %   \cleardoublepage\engcover
+  %   \cleardoublepage\tongji@authorization@mk
+  %   \cleardoublepage\tongji@declareshortname@mk
+  % \end{titlepage}
   \normalsize
   \tongji@makeabstract
   \let\@tabular\tongji@tabular}
@@ -770,7 +770,7 @@
   \setbox0=\hbox{\textbf{Key words:\enskip}}
   \noindent\hangindent\wd0\hangafter1
     \box0\tongji@ekeywords}
-\newenvironment{denotation}[1][2.5cm]{
+\newenvironment{denotation}[1][1.5cm]{
   \tongji@chapter*[]{\tongji@denotation@name} % no tocline
   \thispagestyle{tongji@cabstractheadings} 
   \pagestyle{tongji@cabstractheadings}  
@@ -857,9 +857,10 @@
 \newenvironment{resume}{%
   \cleardoublepage
   \tongji@chapter*{\tongji@resume@title}
-  \thispagestyle{tongji@cabstractheadings} 
-  \pagestyle{tongji@cabstractheadings}  
-  \wuhao[1.5] 
+  % \thispagestyle{tongji@cabstractheadings} 
+  % \pagestyle{tongji@cabstractheadings}
+  \parindent=0em
+  \wuhao[1.5]
   }{}
 \newcommand{\resumeitem}[1]{\vspace{2.5em}{\wuhao\hei\leftline{#1}}\par} 
 \iffalse

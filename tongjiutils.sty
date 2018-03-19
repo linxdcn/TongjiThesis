@@ -8,6 +8,11 @@ would like to use here]
 % 不同于~|\mathcal| or |\mathfrak| 之类的英文花体字体
 %\RequirePackage{mathrsfs}
 
+% 多列文档
+\RequirePackage{multicol}
+\setlength{\columnsep}{100pt}
+\setlength{\multicolsep}{-10pt}
+
 % 表格中支持跨行
 \RequirePackage{multirow}
 \RequirePackage{bigstrut}
@@ -76,6 +81,8 @@ would like to use here]
 % 给自定义的宏后面自动加空白
 \RequirePackage{xspace}
 
+% pdf文件
+\RequirePackage{pdfpages}
 
 % 定义自己常用的东西
 \newcommand{\china}{中华人民共和国}
