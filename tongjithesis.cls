@@ -102,22 +102,22 @@
   % \setCJKfamilyfont{kai}{FandolKai}
 
   % For Windows users, the default font can be used
-  \setCJKmainfont{SimSun}%{Noto Serif CJK SC} 
-  \setCJKsansfont{SimHei}%{Noto Sans CJK SC Regular}
-  \setCJKmonofont{KaiTi}
-  \setCJKfamilyfont{song}{SimSun}
-  \setCJKfamilyfont{hei}{SimHei}
-  \setCJKfamilyfont{fs}{FangSong}
-  \setCJKfamilyfont{kai}{KaiTi}
+  % \setCJKmainfont{SimSun}%{Noto Serif CJK SC} 
+  % \setCJKsansfont{SimHei}%{Noto Sans CJK SC Regular}
+  % \setCJKmonofont{KaiTi}
+  % \setCJKfamilyfont{song}{SimSun}
+  % \setCJKfamilyfont{hei}{SimHei}
+  % \setCJKfamilyfont{fs}{FangSong}
+  % \setCJKfamilyfont{kai}{KaiTi}
   
   % For Mac users, the default font can be used
-  % \setCJKmainfont{STSong}
-  % \setCJKsansfont{STHeiti}
-  % \setCJKmonofont{STKaiti}
-  % \setCJKfamilyfont{song}{STSong}
-  % \setCJKfamilyfont{hei}{STHeiti}
-  % \setCJKfamilyfont{fs}{STFangsong}
-  % \setCJKfamilyfont{kai}{STKaiti}
+  \setCJKmainfont{STSong}
+  \setCJKsansfont{STHeiti}
+  \setCJKmonofont{STKaiti}
+  \setCJKfamilyfont{song}{STSong}
+  \setCJKfamilyfont{hei}{STHeiti}
+  \setCJKfamilyfont{fs}{STFangsong}
+  \setCJKfamilyfont{kai}{STKaiti}
 
   \setmainfont{Times New Roman}
   \setsansfont{Arial}
