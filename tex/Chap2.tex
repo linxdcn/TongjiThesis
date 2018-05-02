@@ -779,9 +779,9 @@ Shen等（\citeyear{shen2014long}）提出差异沉降也是影响隧道服役�
 \begin{table}[htb!]
   \centering
   \caption{TSI与评估等级对照表}
-    \begin{tabular}{?p{3.5em}"p{2.5em}"p{4.19em}"p{9em}"p{11.625em}?}
+    \begin{tabular}{?p{3.5em}<{\centering}"m{2.5em}<{\centering}"p{4.19em}"p{9em}"p{14em}?}
     \thickhline
-    TSI   & 状态    & 病害程度  & 病害对运营安全影响 & 养护措施 \bigstrut\\
+    TSI   & 状态    & 病害程度  & 病害对运营安全影响 & \multicolumn{1}{m{14em}<{\centering}?}{养护措施} \bigstrut\\
     \thinhline
     <=1.5 & 很好    & 无或者非常轻微 & 无影响   & 无 \bigstrut\\
     \thinhline
@@ -800,19 +800,45 @@ Shen等（\citeyear{shen2014long}）提出差异沉降也是影响隧道服役�
 \begin{table}[htb!]
   \centering
   \caption{差和很差状态亚级分类}
-    \begin{tabular}{?c"p{4.19em}"p{5em}"p{10.25em}?}
+    \begin{tabular}{?c"m{4.5em}<{\centering}"m{6em}<{\centering}"p{16em}?}
     \thickhline
-    \multicolumn{1}{"p{4.19em}"}{状态} & 亚级    & 养护措施  & 备注 \bigstrut\\
+    \multicolumn{1}{?m{3.5em}<{\centering}"}{状态} & 亚级    & 养护措施  & \multicolumn{1}{m{16em}<{\centering}?}{备注} \bigstrut\\
     \thinhline
-    \multicolumn{1}{"c"}{\multirow{2}[4]{*}{差}} & 3.6 - 3.9 & 特殊检查  & 对隧道区间进行重点保护 \bigstrut\\
+    \multicolumn{1}{?c"}{\multirow{2}[4]{*}{差}} & 3.6 - 3.9 & 特殊检查  & 对隧道区间进行重点保护 \bigstrut\\
 \cline{2-4}          & 4.0 - 4.5 & 专项检查  & 基于日常检查、定期检查和特殊检查的结果，对重点病害段的检查 \bigstrut\\
     \thinhline
-    \multicolumn{1}{"c"}{\multirow{2}[4]{*}{很差}} & 4.6 - 4.9 & 专项检查，专项研究 & 对隧道建立各类损伤模型评估 \bigstrut\\
+    \multicolumn{1}{?c"}{\multirow{2}[4]{*}{很差}} & 4.6 - 4.9 & 专项检查，专项研究 & 对隧道建立各类损伤模型评估 \bigstrut\\
 \cline{2-4}          & > 5.0 & 立即限制使用 & 进行维修、更换或重建 \bigstrut\\
     \thickhline
     \end{tabular}%
   \label{tab:差和很差状态亚级分类}%
 \end{table}%
+
+\begin{figure}[htbp!] 
+    \centering 
+    \begin{tabular}{c} 
+        \includegraphics[width=0.6\textwidth]{chap2/tsi-statistics-sett.eps} \\ 
+        (a)~相对沉降${sett}_{a}$统计 \\
+        \includegraphics[width=0.6\textwidth]{chap2/tsi-statistics-settd.eps} \\ 
+        (b)~差异沉降$set{{t}_{d\_a}}$统计 \\
+        \includegraphics[width=0.6\textwidth]{chap2/tsi-statistics-cov.eps} \\ 
+        (c)~收敛变形${cov}_{a}$统计 \\
+    \end{tabular}
+    \caption{上海地铁隧道TSI评估结果统计} 
+    \label{fig:上海地铁隧道TSI评估结果统计} 
+\end{figure}
+
+\begin{figure}[htbp!] 
+    \centering 
+    \begin{tabular}{c} 
+        \includegraphics[width=0.8\textwidth]{chap2/triangle-except-leakage.eps} \\ 
+        (a)~${sett}_{a}$-$set{{t}_{d\_a}}$-$cov_a$ \\
+        \includegraphics[width=0.8\textwidth]{chap2/triangle-except-conv.eps} \\ 
+        (b)~${sett}_{a}$-$set{{t}_{d\_a}}$-$d_l$ \\
+    \end{tabular}
+    \caption{评估指标数值与TSI结果关系} 
+    \label{fig:评估指标数值与TSI结果关系} 
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{TSI指标全寿命期修正}
