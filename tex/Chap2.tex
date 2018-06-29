@@ -15,7 +15,7 @@
 	PSI=5.41-1.80\log (1+\overline{SV})-0.09\sqrt{C+P}
 \end{equation}
 
-公式~\ref{equ:psi1}~和公式~\ref{equ:psi2}~因形式简单，物理意义明确，适合用于日常的公路服役性能评估。在此之后，多位学者在上述数据和公式基础上，或对$PSI$进行修正，或提出新的服役性能指标。如Liu和Herman（\citeyear{liu1996new}）研究人为外界激励对公路服役性能的影响，并对$PSI$公式修正以反映路面的真实情况；ASTM（\citeyear{astm20096433}）则根据病害劣化程度，采用扣分的方式给出了道路状态指标（PCI）的计算方法；美国其他州的相关部门参照同样的方法，陆续提出合适的服役性能计算公式（Gharaibeh等，\citeyear{gharaibeh2009assessing}）。但在盾构隧道领域，并未见有相关的研究。
+公式~\ref{equ:psi1}~和公式~\ref{equ:psi2}~因形式简单，物理意义明确，适合用于日常的公路服役性能评估。在此之后，多位学者在上述数据和公式基础上，或对$PSI$进行修正，或提出新的服役性能指标。如Liu和Herman（\citeyear{liu1996new}）研究认为外界激励对公路服役性能的影响，并对$PSI$公式修正以反映路面的真实情况；ASTM（\citeyear{astm20096433}）则根据病害劣化程度，采用扣分的方式给出了道路状态指标（PCI）的计算方法；美国其他州的相关部门参照同样的方法，陆续提出合适的服役性能计算公式（Gharaibeh等，\citeyear{gharaibeh2009assessing}）。但在盾构隧道领域，并未见有相关的研究。
 
 本章参考美国国家公路协会对路面服役性能评估方法，对盾构隧道进行病害数据采集，专家打分，和打分结果的回归拟合，得出适合盾构隧道的服役性能指标。
 
@@ -28,7 +28,7 @@
 
 观测变量：由于盾构隧道结构状态变化，而可通过人工检查、全站仪或激光扫描仪等设备测量到可被观测到现象，如隧道纵向沉降、环向收敛和隧道内病害。（Measurable variable: The observable effects that can be measured, either through visual inspection, total stations, or tunnel section scanning devices, of shield tunnel structure condition changes, such as longitudinal settlement, circumferential convergence and distresses.）
 
-解释变量：可用于描述隧道状态变化的不可观测变量。结构的劣化是由一系列解析变量导致的，解释变量包括结构老化、交通情况、环境腐蚀、维护养护措施等。（Explanatory variable: The unobservable fundamental variables that can describe observed phenomena. Structure deterioration is the result of a variety of these variables. For example, age, traffic, environmental erosion, maintenance activities, etc. constitute explanatory variables.）
+解释变量：可用于描述隧道状态变化的不可观测变量。结构的劣化是由一系列解释变量导致的，解释变量包括结构老化、交通情况、环境腐蚀、维护养护措施等。（Explanatory variable: The unobservable fundamental variables that can describe observed phenomena. Structure deterioration is the result of a variety of these variables. For example, age, traffic, environmental erosion, maintenance activities, etc. constitute explanatory variables.）
 
 隧道服役性能：某一区段隧道在当前时间点，保证隧道结构在运营期正常使用和安全运营的能力，不考虑过去或者未来的因素影响。（Tunnel serviceability: The ability of a speciﬁc section of the shield tunnel structure to provide normal and safe use in its existing condition on the date of the rating, not on a past date or a future date.）
 
@@ -40,7 +40,7 @@
 
 隧道服役性能仅考虑当前时间点的隧道状态。这意味着在对隧道评分过程中不考虑隧道过去的状态，因为本文的主要目的是建立隧道服役性能与观测变量之间的数学表达式。如果评分过程考虑过去状态，需要大量的历史数据支持，这在现实当中可操作性低。对于隧道过去和未来的性能状态，后续可通过退化模型进行考虑。
 
-隧道服役性能只与观测变量有关。Ramaswamy（\citeyear{ramaswamy1989estimation}）指出观测变量揭示了隧道劣化指标与隧道状态之间的关系，而解析变量则解释了隧道劣化的过程。本章只考虑隧道服役性能，并不考虑隧道性能退化。
+隧道服役性能只与观测变量有关。Ramaswamy（\citeyear{ramaswamy1989estimation}）指出观测变量揭示了隧道劣化指标与隧道状态之间的关系，而解释变量则解释了隧道劣化的过程。本章只考虑隧道服役性能，并不考虑隧道性能退化。
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{盾构隧道数据采集}
@@ -205,7 +205,7 @@ Shen等（\citeyear{shen2014long}）提出差异沉降也是影响隧道服役�
     \label{equ:ratio1}
     \rho =\frac{{{(L/4)}^{2}}}{{{\delta }_{m}}}
 \end{equation}
-式中：$\rho$为最小曲率半径；$L$为沉降范围，取区间隧道长度；${\delta }_{m}$为沉降最大值。也有取计算点临近的三点沉降监测点，由三点确定一圆弧，近似取圆弧曲率半径的计算方法。叶耀东（\citeyear{叶耀东2007软土地区运营地铁盾构隧道结构变形及健康诊断方法研究}）则提出采用三次B样条曲线模拟整条隧道变形再计算曲率半径的方法。
+式中：$\rho$为最小曲率半径；$L$为沉降范围，一般取同一沉降槽起始、终点之间距离；${\delta }_{m}$为沉降最大值。也有取计算点临近的三点沉降监测点，由三点确定一圆弧，近似取圆弧曲率半径的计算方法。叶耀东（\citeyear{叶耀东2007软土地区运营地铁盾构隧道结构变形及健康诊断方法研究}）则提出采用三次B样条曲线模拟整条隧道变形再计算曲率半径的方法。
 
 采用曲率半径表示差异沉降只是一种近似的计算方法，而且不一定能计算得到每一监测点处的差异沉降。故本文直接采用差异沉降定义的计算方法
 \begin{align}
@@ -219,7 +219,7 @@ Shen等（\citeyear{shen2014long}）提出差异沉降也是影响隧道服役�
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 \subsection{横向变形}
 
-上海地铁设计时要求横向累积变形量小于$5\%D$（$D$为隧道外直径），但在实际监测中发现，运营隧道的收敛变形往往超过此限定值，过大的横向变形会引起衬砌接缝张开和挤压、渗漏水或管片压损等（Mahdevari和Torabi，\citeyear{mahdevari2012prediction}）。本文采用平均收敛变形表征隧道横向变形的程度
+上海地铁设计时要求横向累积变形量小于$5‰D$（$D$为隧道外直径），但在实际监测中发现，运营隧道的收敛变形往往超过此限定值，过大的横向变形会引起衬砌接缝张开和挤压、渗漏水或管片压损等（Mahdevari和Torabi，\citeyear{mahdevari2012prediction}）。本文采用平均收敛变形表征隧道横向变形的程度
 \begin{equation}
     \label{equ:conv_ave}
     {{cov}_{a}}=\frac{\sum\limits_{i=1}^{m}{\left| {{d}_{i}}-d \right|}}{Dm}
@@ -256,7 +256,7 @@ Shen等（\citeyear{shen2014long}）提出差异沉降也是影响隧道服役�
     \label{fig:弹性地基梁纵向剪切平衡分析图}
 \end{figure}
 
-因此，本文只选取渗漏水、裂缝、剥落作为评估指标，如式~\ref{equ:leakage}~-~\ref{equ:cracking}~所示，其中：$r$为检查隧道区间总环数；${d}_{l}$为百环渗漏水面积（$m^2/100$环）；${d}_{s}$为百环衬砌剥落面积（$m^2/100$环）；${d}_{c}$为百环裂缝长度（$m/100$环）；${n}_{l}$为渗漏水记录总数；${n}_{s}$为剥落记录总数；${n}_{c}$为裂缝记录总数；${l}_{ai}$为第$i$个渗漏水面积；${s}_{ai}$为第$i$个剥落面积；${c}_{li}$为第$i$个裂缝长度。
+因此，本文只选取渗漏水、裂缝、剥落作为评估指标，如式~\ref{equ:leakage}~-~\ref{equ:cracking}~所示
 \begin{align}
     \label{equ:leakage}
     {{d}_{l}}=\frac{\sum\limits_{i=1}^{{{n}_{l}}}{{{l}_{ai}}}}{r}\times 100 \\
@@ -265,6 +265,7 @@ Shen等（\citeyear{shen2014long}）提出差异沉降也是影响隧道服役�
     \label{equ:cracking}
     {{d}_{c}}=\frac{\sum\limits_{i=1}^{{{n}_{c}}}{{{c}_{li}}}}{r}\times 100
 \end{align}
+式中：$r$为检查隧道区间总环数；${d}_{l}$为百环渗漏水面积（$m^2/100$环）；${d}_{s}$为百环衬砌剥落面积（$m^2/100$环）；${d}_{c}$为百环裂缝长度（$m/100$环）；${n}_{l}$为渗漏水记录总数；${n}_{s}$为剥落记录总数；${n}_{c}$为裂缝记录总数；${l}_{ai}$为第$i$个渗漏水面积；${s}_{ai}$为第$i$个剥落面积；${c}_{li}$为第$i$个裂缝长度。
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 \subsection{研究样本指标特征}
 
@@ -1027,7 +1028,7 @@ Cheng等（\citeyear{cheng1999evaluating}）引入变权函数，采用变权权
 
 \subsection{常权TSI应用}
 
-以上海地铁12号线天潼路站至国客中心站区间为例，说明TSI公式的应用。该区间长1449.6米，环宽1.2米，共计1208环，平面图如图~\ref{fig:天潼路-国客中心区间平面图}~所示。通过监测与人工检查方式获得该隧道区间沉降数据如图~\ref{fig:天潼路-国客中心区间监测数据}a~所示，相对沉降大小在0-9mm范围，收敛数据如图~\ref{fig:天潼路-国客中心区间监测数据}b~所示，收敛变形大小在0-10‰D范围。
+以上海地铁12号线天潼路站至国客中心站区间为例，说明TSI公式的应用。该区间长1449.6米，环宽1.2米，共计1208环，平面图如图~\ref{fig:天潼路-国客中心区间平面图}~所示。通过监测与人工检查方式获得该隧道区间沉降数据如图~\ref{fig:天潼路-国客中心区间监测数据}a~所示，相对沉降大小在0-9mm范围，收敛数据如图~\ref{fig:天潼路-国客中心区间监测数据}b~所示，收敛变形大小在0-10$‰D$范围。
 
 \begin{figure}[htb!]
     \centering
@@ -1149,7 +1150,7 @@ Cheng等（\citeyear{cheng1999evaluating}）引入变权函数，采用变权权
 
 \subsection{空间网格TSI应用}
 
-选取上海地铁1号线、2号线和4号线，并计算目前有监测和检测数据的区间的TSI值，如图~\ref{fig:上海地铁TSI指标计算结果}~所示，1号线沿线的TSI范围在1.4-3.5之间，其中人民广场-大世界和上海图书馆-徐家汇区间最为严重，评估结果比“一般”与“差”之间；2号线沿线的TSI范围在1.6-2.8之间，大部分处理“好”等级；4号线沿线的TSI范围在1.6-2.6之间，情况与2号线类似。另外，从图~\ref{fig:上海地铁TSI指标计算结果}~的地铁线路交汇处，如1号线与2号线的人民广场站附近，TSI计算结果在2.8左右，1号线与4号线的上海体育馆附近，TSI计算结果在2.0左右，且服役性能指标受很多外部因素的影响，如地质条件、上部荷载等，这些影响因素本身是存在空间关联性的。故本文假设地铁的服役性能指标值存在空间上的关联性，采用空间变异理论对其进行研究。
+选取上海地铁1号线、2号线和4号线，并计算目前有监测和检测数据的区间的TSI值，如图~\ref{fig:上海地铁TSI指标计算结果}~所示，1号线沿线的TSI范围在1.4-3.5之间，其中人民广场站-黄陂南路站和上海体育馆站-徐家汇站区间最为严重，评估结果比“一般”与“差”之间；2号线沿线的TSI范围在1.6-2.8之间，大部分处理“好”等级；4号线沿线的TSI范围在1.6-2.6之间，情况与2号线类似。另外，从图~\ref{fig:上海地铁TSI指标计算结果}~的地铁线路交汇处，如1号线与2号线的人民广场站附近，TSI计算结果在2.8左右，1号线与4号线的上海体育馆附近，TSI计算结果在2.0左右，且服役性能指标受很多外部因素的影响，如地质条件、上部荷载等，这些影响因素本身是存在空间关联性的。故本文假设地铁的服役性能指标值存在空间上的关联性，采用空间变异理论对其进行研究。
 
 \begin{figure}[htb!]
     \centering

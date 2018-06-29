@@ -2,7 +2,7 @@
 \chapter{分布式盾构隧道服役性能服务}
 \label{chap:service}
 
-在~\ref{chap:service-intro}~小节中已提到，盾构隧道中的数字化平台，从专一的地理信息系统（Geographic Information System，GIS）和建筑信息模型（Building Information Model，BIM），逐渐向向可定制化、信息流管理、满足专业分析需求的综合性平台发展。本文选择基于基础设施智慧服务系统（infrastructure Smart Service System，iS3）（朱合华等，\citeyear{朱合华2018智慧基础设施}），研究盾构隧道服役性能评估与预测服务的实现。
+在~\ref{chap:service-intro}~小节中已提到，盾构隧道中的数字化平台，从专一的地理信息系统（Geographic Information System，GIS）和建筑信息模型（Building Information Model，BIM），逐渐向可定制化、信息流管理、满足专业分析需求的综合性平台发展。本文选择基于基础设施智慧服务系统（infrastructure Smart Service System，iS3）（朱合华等，\citeyear{朱合华2018智慧基础设施}），研究盾构隧道服役性能评估与预测服务的实现。
 
 iS3系统的现有框架如图~\ref{fig:iS3系统框架图}~所示，系统的核心是iS3 Core，负责系统的管理与调度，围绕核心的是各类模块的接入，如盾构隧道服役性能的服务会涉及到的模块包括（1）数据库模块：计算TSI、建立ARMA、SVAR模型所需的历史数据；（2）分析工具模块：第~\ref{chap:tsi}~章和第~\ref{chap:prediction}~章的实现算法，和其他可能用到的辅助工具；（3）有限元软件模块：隧道工程的特殊性，需借助第三方软件，如为服役性能计算沉降和收敛值；（4）GIS和BIM模型模块：为了使系统界面更丰富，需接入二维、三维模型；（5）UI界面模块：与用户交互的UI界面包括桌面端、Web端和移动端；（6）API模块：iS3自身也会对现有的数据、工具进行封装，对外界开放。
 
